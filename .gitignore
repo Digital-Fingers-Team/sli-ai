@@ -1,0 +1,9 @@
+node_modules/
+dist/
+public/runtime/
+training/cache/
+training/__pycache__/
+test-results/
+playwright-report/
+*.log
+tests/fixtures/*.y4m

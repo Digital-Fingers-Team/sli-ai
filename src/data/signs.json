@@ -1,0 +1,4177 @@
+[
+{
+"id": 0,
+"ar": "0",
+"label": "0",
+"en": "0",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 1,
+"ar": "1",
+"label": "1",
+"en": "1",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 2,
+"ar": "2",
+"label": "2",
+"en": "2",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 3,
+"ar": "3",
+"label": "3",
+"en": "3",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 4,
+"ar": "4",
+"label": "4",
+"en": "4",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 5,
+"ar": "5",
+"label": "5",
+"en": "5",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 6,
+"ar": "6",
+"label": "6",
+"en": "6",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 7,
+"ar": "7",
+"label": "7",
+"en": "7",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 8,
+"ar": "8",
+"label": "8",
+"en": "8",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 9,
+"ar": "9",
+"label": "9",
+"en": "9",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 10,
+"ar": "10",
+"label": "10",
+"en": "10",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 11,
+"ar": "20",
+"label": "20",
+"en": "20",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 12,
+"ar": "30",
+"label": "30",
+"en": "30",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 13,
+"ar": "40",
+"label": "40",
+"en": "40",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 14,
+"ar": "50",
+"label": "50",
+"en": "50",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 15,
+"ar": "60",
+"label": "60",
+"en": "60",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 16,
+"ar": "70",
+"label": "70",
+"en": "70",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 17,
+"ar": "80",
+"label": "80",
+"en": "80",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 18,
+"ar": "90",
+"label": "90",
+"en": "90",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 19,
+"ar": "100",
+"label": "100",
+"en": "100",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 20,
+"ar": "200",
+"label": "200",
+"en": "200",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 21,
+"ar": "300",
+"label": "300",
+"en": "300",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 22,
+"ar": "400",
+"label": "400",
+"en": "400",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 23,
+"ar": "500",
+"label": "500",
+"en": "500",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 24,
+"ar": "600",
+"label": "600",
+"en": "600",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 25,
+"ar": "700",
+"label": "700",
+"en": "700",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 26,
+"ar": "800",
+"label": "800",
+"en": "800",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 27,
+"ar": "900",
+"label": "900",
+"en": "900",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 28,
+"ar": "1000",
+"label": "1000",
+"en": "1000",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 29,
+"ar": "1000000",
+"label": "1000000",
+"en": "1000000",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 30,
+"ar": "10000000",
+"label": "10000000",
+"en": "10000000",
+"cat": "numbers",
+"aliases": []
+},
+{
+"id": 31,
+"ar": "ا",
+"label": "ا",
+"en": "alif",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 32,
+"ar": "ب",
+"label": "ب",
+"en": "baa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 33,
+"ar": "ت",
+"label": "ت",
+"en": "ta",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 34,
+"ar": "ث",
+"label": "ث",
+"en": "tha",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 35,
+"ar": "ج",
+"label": "ج",
+"en": "Jiim",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 36,
+"ar": "ح",
+"label": "ح",
+"en": "Haa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 37,
+"ar": "خ",
+"label": "خ",
+"en": "kha",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 38,
+"ar": "د",
+"label": "د",
+"en": "daal",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 39,
+"ar": "ذ",
+"label": "ذ",
+"en": "thal",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 40,
+"ar": "ر",
+"label": "ر",
+"en": "raa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 41,
+"ar": "ز",
+"label": "ز",
+"en": "zay",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 42,
+"ar": "س",
+"label": "س",
+"en": "siin",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 43,
+"ar": "ش",
+"label": "ش",
+"en": "shiin",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 44,
+"ar": "ص",
+"label": "ص",
+"en": "Saad",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 45,
+"ar": "ض",
+"label": "ض",
+"en": "Daad",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 46,
+"ar": "ط",
+"label": "ط",
+"en": "Taa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 47,
+"ar": "ظ",
+"label": "ظ",
+"en": "Zaa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 48,
+"ar": "ع",
+"label": "ع",
+"en": "Ayn",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 49,
+"ar": "غ",
+"label": "غ",
+"en": "ghayn",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 50,
+"ar": "ف",
+"label": "ف",
+"en": "faa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 51,
+"ar": "ق",
+"label": "ق",
+"en": "qaaf",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 52,
+"ar": "ك",
+"label": "ك",
+"en": "kaaf",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 53,
+"ar": "ل",
+"label": "ل",
+"en": "laam",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 54,
+"ar": "م",
+"label": "م",
+"en": "miim",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 55,
+"ar": "ن",
+"label": "ن",
+"en": "noon",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 56,
+"ar": "ه",
+"label": "ه",
+"en": "haa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 57,
+"ar": "و",
+"label": "و",
+"en": "waaw",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 58,
+"ar": "ي",
+"label": "ي",
+"en": "yaa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 59,
+"ar": "ة",
+"label": "ة",
+"en": "taa marbuuTa",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 60,
+"ar": "أ",
+"label": "أ",
+"en": "alif with hamza above",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 61,
+"ar": "ؤ",
+"label": "ؤ",
+"en": "Waaw with hamza",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 62,
+"ar": "ئ",
+"label": "ئ",
+"en": "Alif maqsoura with hamza",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 63,
+"ar": "ئـ",
+"label": "ئـ",
+"en": "hamza on line",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 64,
+"ar": "ء",
+"label": "ء",
+"en": "hamza",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 65,
+"ar": "إ",
+"label": "إ",
+"en": "alif with hamza below",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 66,
+"ar": "آ",
+"label": "آ",
+"en": "ALif with maad",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 67,
+"ar": "ى",
+"label": "ى",
+"en": "Alif maqsoura",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 68,
+"ar": "لا",
+"label": "لا",
+"en": "laam Alif",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 69,
+"ar": "ال",
+"label": "ال",
+"en": "Al",
+"cat": "letters",
+"aliases": []
+},
+{
+"id": 70,
+"ar": "هيكل عظمي",
+"label": "هيكل عظمي",
+"en": "Skeleton",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 71,
+"ar": "جمجة",
+"label": "جمجة",
+"en": "skull",
+"cat": "health",
+"aliases": [
+"جمجمة"
+]
+},
+{
+"id": 72,
+"ar": "عمود فقري",
+"label": "عمود فقري",
+"en": "Backbone",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 73,
+"ar": "قفص صدري",
+"label": "قفص صدري",
+"en": "Chest",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 74,
+"ar": "جهاز تنفسي",
+"label": "جهاز تنفسي",
+"en": "Respiratory device",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 75,
+"ar": "قصبة هوائية",
+"label": "قصبة هوائية",
+"en": "Trachea",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 76,
+"ar": "رئتان",
+"label": "رئتان",
+"en": "lungs",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 77,
+"ar": "شهيق - زفير",
+"label": "شهيق - زفير",
+"en": "Ins and Outs",
+"cat": "health",
+"aliases": [
+"شهيق زفير"
+]
+},
+{
+"id": 78,
+"ar": "جهاز هضمي",
+"label": "جهاز هضمي",
+"en": "digestive system",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 79,
+"ar": "وجه",
+"label": "وجه",
+"en": "Face",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 80,
+"ar": "بلعوم",
+"label": "بلعوم",
+"en": "pharynx",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 81,
+"ar": "كبد",
+"label": "كبد",
+"en": "liver",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 82,
+"ar": "البنكرياس",
+"label": "البنكرياس",
+"en": "pancreas",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 83,
+"ar": "الأمعاء الدقيقة",
+"label": "الأمعاء الدقيقة",
+"en": "Small intestine",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 84,
+"ar": "الأمعاء الغليظة",
+"label": "الأمعاء الغليظة",
+"en": "Large intestine",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 85,
+"ar": "الزائدة الدودية",
+"label": "الزائدة الدودية",
+"en": "Appendix",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 86,
+"ar": "جهاز عصبي",
+"label": "جهاز عصبي",
+"en": "nervous system",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 87,
+"ar": "قلب",
+"label": "قلب",
+"en": "heart",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 88,
+"ar": "حواس خمس",
+"label": "حواس خمس",
+"en": "five senses",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 89,
+"ar": "عضلة",
+"label": "عضلة",
+"en": "muscle",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 90,
+"ar": "أنسجة",
+"label": "أنسجة",
+"en": "tissue",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 91,
+"ar": "مستشفى",
+"label": "مستشفى",
+"en": "hospital",
+"cat": "health",
+"aliases": [
+"مستشفي"
+]
+},
+{
+"id": 92,
+"ar": "إسعافات أولية",
+"label": "إسعافات أولية",
+"en": "first aid",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 93,
+"ar": "جرح نازف",
+"label": "جرح نازف",
+"en": "wound",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 94,
+"ar": "حروق",
+"label": "حروق",
+"en": "burning",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 95,
+"ar": "مخدر",
+"label": "مخدر/ بنج",
+"en": "anesthetist",
+"cat": "health",
+"aliases": [
+"مخدر",
+"بنج"
+]
+},
+{
+"id": 96,
+"ar": "عملية جراحية",
+"label": "عملية جراحية",
+"en": "surgery",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 97,
+"ar": "شاش",
+"label": "شاش / ضمادة",
+"en": "gauze",
+"cat": "health",
+"aliases": [
+"شاش",
+"ضمادة"
+]
+},
+{
+"id": 98,
+"ar": "شريط لاصق",
+"label": "شريط لاصق / بلاستر",
+"en": "adhesive tape",
+"cat": "health",
+"aliases": [
+"شريط لاصق",
+"بلاستر"
+]
+},
+{
+"id": 99,
+"ar": "صيدلية",
+"label": "صيدلية",
+"en": "pharmacy",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 100,
+"ar": "تحليل دم",
+"label": "تحليل دم",
+"en": "blood analysis",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 101,
+"ar": "فحص سريري",
+"label": "فحص سريري",
+"en": "physical examination",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 102,
+"ar": "فحص النظر",
+"label": "فحص النظر",
+"en": "sight examination",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 103,
+"ar": "ميزان حرارة",
+"label": "ميزان حرارة",
+"en": "thermometer",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 104,
+"ar": "سماعة أذن",
+"label": "سماعة أذن",
+"en": "stethoscope",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 105,
+"ar": "جهاز قياس الضغط",
+"label": "جهاز قياس الضغط",
+"en": "sphygmometroscope",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 106,
+"ar": "نبض القلب",
+"label": "نبض القلب",
+"en": "pulse",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 107,
+"ar": "تحليل طبي",
+"label": "تحليل طبي",
+"en": "analysis",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 108,
+"ar": "معمل التحاليل",
+"label": "معمل التحاليل / مختبر",
+"en": "analysis laboratory",
+"cat": "health",
+"aliases": [
+"معمل التحاليل",
+"مختبر"
+]
+},
+{
+"id": 109,
+"ar": "صورة اشعة",
+"label": "صورة اشعة",
+"en": "ray photo",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 110,
+"ar": "التهاب",
+"label": "التهاب",
+"en": "inflammation",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 111,
+"ar": "تورم",
+"label": "تورم",
+"en": "swelling",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 112,
+"ar": "زكام",
+"label": "زكام",
+"en": "cold",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 113,
+"ar": "عدوى",
+"label": "عدوى",
+"en": "infection",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 114,
+"ar": "صداع",
+"label": "صداع",
+"en": "headache",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 115,
+"ar": "ألم",
+"label": "ألم",
+"en": "pain",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 116,
+"ar": "حمى",
+"label": "حمى",
+"en": "fever",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 117,
+"ar": "إسهال",
+"label": "إسهال",
+"en": "diarrhea",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 118,
+"ar": "إمساك",
+"label": "إمساك",
+"en": "constipation",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 119,
+"ar": "مغص",
+"label": "مغص",
+"en": "colic",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 120,
+"ar": "مرض السكر",
+"label": "مرض السكر / سكري",
+"en": "diabetes",
+"cat": "health",
+"aliases": [
+"مرض السكر",
+"سكري"
+]
+},
+{
+"id": 121,
+"ar": "أزمة قلبية",
+"label": "أزمة قلبية",
+"en": "heart attack",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 122,
+"ar": "سرطان",
+"label": "سرطان",
+"en": "cancer",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 123,
+"ar": "مرض فقدان المناعة",
+"label": "مرض فقدان المناعة / الإيدز",
+"en": "Aids",
+"cat": "health",
+"aliases": [
+"مرض فقدان المناعة",
+"الإيدز"
+]
+},
+{
+"id": 124,
+"ar": "تساقط الشعر",
+"label": "تساقط الشعر",
+"en": "Loss of hair",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 125,
+"ar": "سكتة قلبية",
+"label": "سكتة قلبية",
+"en": "Heart failure",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 126,
+"ar": "شلل نصفي",
+"label": "شلل نصفي",
+"en": "hemiplegia",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 127,
+"ar": "شلل دماغي",
+"label": "شلل دماغي",
+"en": "Cerebral paralysis",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 128,
+"ar": "ضغط الدم",
+"label": "ضغط الدم",
+"en": "blood pressure",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 129,
+"ar": "حساسية",
+"label": "حساسية",
+"en": "allergy",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 130,
+"ar": "حكة",
+"label": "حكة / هرش",
+"en": "itch",
+"cat": "health",
+"aliases": [
+"حكة",
+"هرش"
+]
+},
+{
+"id": 131,
+"ar": "دواء",
+"label": "دواء",
+"en": "medicine",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 132,
+"ar": "دورة شهرية",
+"label": "دورة شهرية",
+"en": "monthly circulation",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 133,
+"ar": "مريض",
+"label": "مريض / مرض",
+"en": "sick",
+"cat": "health",
+"aliases": [
+"مريض",
+"مرض"
+]
+},
+{
+"id": 134,
+"ar": "كبسولة",
+"label": "كبسولة",
+"en": "capsule",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 135,
+"ar": "دواء شراب",
+"label": "دواء شراب",
+"en": "liquid medicine",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 136,
+"ar": "مرهم",
+"label": "مرهم",
+"en": "ointment",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 137,
+"ar": "قطارة",
+"label": "قطارة",
+"en": "dropper",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 138,
+"ar": "أخذ إبرة",
+"label": "أخذ إبرة",
+"en": "acupuncture",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 139,
+"ar": "تلقيح",
+"label": "تلقيح",
+"en": "pollination",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 140,
+"ar": "تطعيم",
+"label": "تطعيم",
+"en": "inoculation",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 141,
+"ar": "أشعة ليزر",
+"label": "أشعة ليزر",
+"en": "laser ray",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 142,
+"ar": "مخدرات",
+"label": "مخدرات",
+"en": "drug's",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 143,
+"ar": "إدمان",
+"label": "إدمان",
+"en": "addiction",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 144,
+"ar": "توحد",
+"label": "توحد / أوتيزم",
+"en": "oneness",
+"cat": "health",
+"aliases": [
+"توحد",
+"أوتيزم"
+]
+},
+{
+"id": 145,
+"ar": "منغولي",
+"label": "منغولي",
+"en": "mongoloid",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 146,
+"ar": "بكتريا",
+"label": "بكتريا",
+"en": "bacterium",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 147,
+"ar": "جرثومة",
+"label": "جرثومة",
+"en": "microbe",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 148,
+"ar": "فيروس",
+"label": "فيروس",
+"en": "virus",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 149,
+"ar": "إنتشار",
+"label": "إنتشار",
+"en": "spread",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 150,
+"ar": "إعاقة",
+"label": "إعاقة",
+"en": "hindrance",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 151,
+"ar": "إعاقة ذهنية",
+"label": "إعاقة ذهنية",
+"en": "mentality hindrance",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 152,
+"ar": "اعاقة جسدية",
+"label": "اعاقة جسدية",
+"en": "physical disability",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 153,
+"ar": "اعاقة بصرية",
+"label": "اعاقة بصرية",
+"en": "visual impairment",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 154,
+"ar": "إعاقة سمعية",
+"label": "إعاقة سمعية",
+"en": "hearing hindrance",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 155,
+"ar": "وباء",
+"label": "وباء",
+"en": "epidemic",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 156,
+"ar": "مناعة",
+"label": "مناعة",
+"en": "immunity",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 157,
+"ar": "عصب",
+"label": "عصب",
+"en": "nerve",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 158,
+"ar": "معافى",
+"label": "معافى",
+"en": "healthy",
+"cat": "health",
+"aliases": []
+},
+{
+"id": 159,
+"ar": "يأكل",
+"label": "يأكل",
+"en": "eat",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 160,
+"ar": "يشرب",
+"label": "يشرب",
+"en": "drink",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 161,
+"ar": "ينام",
+"label": "ينام",
+"en": "sleep",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 162,
+"ar": "يستيقظ",
+"label": "يستيقظ",
+"en": "wake up",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 163,
+"ar": "يسمع",
+"label": "يسمع",
+"en": "hear",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 164,
+"ar": "يسكت",
+"label": "يسكت",
+"en": "silence",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 165,
+"ar": "يشم",
+"label": "يشم",
+"en": "inhale",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 166,
+"ar": "يصعد",
+"label": "يصعد",
+"en": "rise",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 167,
+"ar": "ينزل",
+"label": "ينزل",
+"en": "descend",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 168,
+"ar": "يفتح",
+"label": "يفتح",
+"en": "open",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 169,
+"ar": "يقفل",
+"label": "يقفل ( يغلق )",
+"en": "close",
+"cat": "verbs",
+"aliases": [
+"يقفل",
+"يغلق"
+]
+},
+{
+"id": 170,
+"ar": "يبني",
+"label": "يبني",
+"en": "build",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 171,
+"ar": "يكسر",
+"label": "يكسر",
+"en": "break",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 172,
+"ar": "يمشي",
+"label": "يمشي",
+"en": "walk",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 173,
+"ar": "يحب",
+"label": "يحب",
+"en": "love",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 174,
+"ar": "يكره",
+"label": "يكره",
+"en": "hate",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 175,
+"ar": "يشوي",
+"label": "يشوي",
+"en": "grill",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 176,
+"ar": "يحرث",
+"label": "يحرث",
+"en": "plow",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 177,
+"ar": "يزرع",
+"label": "يزرع",
+"en": "plant",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 178,
+"ar": "يسقي",
+"label": "يسقي",
+"en": "irrigate",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 179,
+"ar": "يحصد",
+"label": "يحصد",
+"en": "harvest",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 180,
+"ar": "يفكر",
+"label": "يفكر",
+"en": "think",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 181,
+"ar": "يساعد",
+"label": "يساعد",
+"en": "help",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 182,
+"ar": "يدخن",
+"label": "يدخن",
+"en": "smoke",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 183,
+"ar": "يدعم",
+"label": "يدعم",
+"en": "support",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 184,
+"ar": "يختار",
+"label": "يختار",
+"en": "choose",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 185,
+"ar": "ينادي",
+"label": "ينادي",
+"en": "call",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 186,
+"ar": "يتنامى",
+"label": "يتنامى",
+"en": "grow",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 187,
+"ar": "يصبغ",
+"label": "يصبغ",
+"en": "dye",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 188,
+"ar": "يقف",
+"label": "يقف",
+"en": "stand",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 189,
+"ar": "يستحم",
+"label": "يستحم",
+"en": "bathe",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 190,
+"ar": "يدخل",
+"label": "يدخل",
+"en": "enter",
+"cat": "verbs",
+"aliases": []
+},
+{
+"id": 191,
+"ar": "أسرة",
+"label": "أسرة",
+"en": "family",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 192,
+"ar": "جدة",
+"label": "جدة",
+"en": "grandmother",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 193,
+"ar": "جد",
+"label": "جد",
+"en": "grandfather",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 194,
+"ar": "أب",
+"label": "أب",
+"en": "father",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 195,
+"ar": "أم",
+"label": "أم",
+"en": "mother",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 196,
+"ar": "أخت",
+"label": "أخت",
+"en": "sister",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 197,
+"ar": "أخ",
+"label": "أخ",
+"en": "brother",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 198,
+"ar": "بنت",
+"label": "بنت",
+"en": "girl",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 199,
+"ar": "رضيع",
+"label": "رضيع",
+"en": "baby",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 200,
+"ar": "توأم",
+"label": "توأم",
+"en": "twin",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 201,
+"ar": "رجل",
+"label": "رجل",
+"en": "man",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 202,
+"ar": "شاب",
+"label": "شاب",
+"en": "young man",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 203,
+"ar": "شابة",
+"label": "شابة",
+"en": "young woman",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 204,
+"ar": "حفيد",
+"label": "حفيد",
+"en": "grandchild",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 205,
+"ar": "زواج",
+"label": "زواج",
+"en": "wedding",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 206,
+"ar": "حمل",
+"label": "حمل",
+"en": "pregnant",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 207,
+"ar": "ولادة",
+"label": "ولادة",
+"en": "childbirth",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 208,
+"ar": "عم",
+"label": "عم",
+"en": "uncle",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 209,
+"ar": "عمة",
+"label": "عمة",
+"en": "aunt",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 210,
+"ar": "خال",
+"label": "خال",
+"en": "maternal uncle",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 211,
+"ar": "خالة",
+"label": "خالة",
+"en": "maternal aunt",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 212,
+"ar": "ابن الأخ",
+"label": "ابن الأخ",
+"en": "nephew",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 213,
+"ar": "ابن الأخت",
+"label": "ابن الأخت",
+"en": "nephew",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 214,
+"ar": "ابن العم",
+"label": "ابن العم",
+"en": "cousin",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 215,
+"ar": "ابن",
+"label": "ابن",
+"en": "son",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 216,
+"ar": "ابنة",
+"label": "ابنة",
+"en": "daughter",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 217,
+"ar": "ناس",
+"label": "ناس",
+"en": "people",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 218,
+"ar": "طلاق",
+"label": "طلاق",
+"en": "divorce",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 219,
+"ar": "خطوبة",
+"label": "خطوبة",
+"en": "engagement",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 220,
+"ar": "حفلة",
+"label": "حفلة",
+"en": "party",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 221,
+"ar": "وفاة",
+"label": "وفاة",
+"en": "death",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 222,
+"ar": "طفل",
+"label": "طفل",
+"en": "child",
+"cat": "family",
+"aliases": []
+},
+{
+"id": 223,
+"ar": "جميل",
+"label": "جميل",
+"en": "beautiful",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 224,
+"ar": "قبيح",
+"label": "قبيح",
+"en": "ugly",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 225,
+"ar": "طويل",
+"label": "طويل",
+"en": "long",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 226,
+"ar": "قصير",
+"label": "قصير",
+"en": "short",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 227,
+"ar": "نحيف",
+"label": "نحيف",
+"en": "thin",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 228,
+"ar": "سمين",
+"label": "سمين",
+"en": "fat",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 229,
+"ar": "غني",
+"label": "غني",
+"en": "rich",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 230,
+"ar": "فقير",
+"label": "فقير",
+"en": "poor",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 231,
+"ar": "محبط",
+"label": "محبط",
+"en": "offended",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 232,
+"ar": "مشمئز",
+"label": "مشمئز",
+"en": "disgusted",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 233,
+"ar": "مرتبك",
+"label": "مرتبك",
+"en": "confused",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 234,
+"ar": "قلق",
+"label": "قلق",
+"en": "worried",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 235,
+"ar": "مشوش",
+"label": "مشوش",
+"en": "deranged",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 236,
+"ar": "خائف",
+"label": "خائف",
+"en": "afraid",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 237,
+"ar": "سعيد",
+"label": "سعيد (مسرور)",
+"en": "happy",
+"cat": "traits",
+"aliases": [
+"سعيد",
+"مسرور",
+"فرحان",
+"مبسوط"
+]
+},
+{
+"id": 238,
+"ar": "حزين",
+"label": "حزين",
+"en": "sad",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 239,
+"ar": "شجاع",
+"label": "شجاع",
+"en": "courageous",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 240,
+"ar": "جبان",
+"label": "جبان",
+"en": "coward",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 241,
+"ar": "طموح",
+"label": "طموح",
+"en": "ambitious",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 242,
+"ar": "معجب",
+"label": "معجب",
+"en": "admirable",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 243,
+"ar": "غائر من",
+"label": "غائر من",
+"en": "to be jealous of",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 244,
+"ar": "غائر على",
+"label": "غائر على",
+"en": "to protect jealously",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 245,
+"ar": "ودود",
+"label": "ودود",
+"en": "affectionate",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 246,
+"ar": "كريم",
+"label": "كريم",
+"en": "generous",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 247,
+"ar": "بخيل",
+"label": "بخيل",
+"en": "miserly",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 248,
+"ar": "طماع",
+"label": "طماع",
+"en": "greedy",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 249,
+"ar": "كذاب",
+"label": "كذاب",
+"en": "liar",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 250,
+"ar": "أناني",
+"label": "أناني",
+"en": "selfish",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 251,
+"ar": "متكبر",
+"label": "متكبر",
+"en": "proud",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 252,
+"ar": "متواضع",
+"label": "متواضع",
+"en": "humble",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 253,
+"ar": "شعور",
+"label": "شعور",
+"en": "feeling",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 254,
+"ar": "تعب",
+"label": "تعب",
+"en": "tired",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 255,
+"ar": "بكاء",
+"label": "بكاء",
+"en": "crying",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 256,
+"ar": "احتقار",
+"label": "احتقار",
+"en": "contempt",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 257,
+"ar": "اعتماد على الذات",
+"label": "اعتماد على الذات",
+"en": "self-dependence",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 258,
+"ar": "خفيف",
+"label": "خفيف",
+"en": "light",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 259,
+"ar": "ثقيل",
+"label": "ثقيل",
+"en": "heavy",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 260,
+"ar": "قديم",
+"label": "قديم",
+"en": "old",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 261,
+"ar": "حسد",
+"label": "حسد",
+"en": "envy",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 262,
+"ar": "صدق",
+"label": "صدق",
+"en": "believe",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 263,
+"ar": "غدر",
+"label": "غدر",
+"en": "betrayal",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 264,
+"ar": "صبر",
+"label": "صبر",
+"en": "patient",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 265,
+"ar": "لوم",
+"label": "لوم",
+"en": "blame",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 266,
+"ar": "الحق",
+"label": "الحق",
+"en": "truth",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 267,
+"ar": "خيانة",
+"label": "خيانة",
+"en": "treason",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 268,
+"ar": "إيثار",
+"label": "إيثار",
+"en": "preference",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 269,
+"ar": "تضحية",
+"label": "تضحية",
+"en": "self sacrifice",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 270,
+"ar": "شفقة",
+"label": "شفقة",
+"en": "pity",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 271,
+"ar": "ذكي",
+"label": "ذكي",
+"en": "intelligent",
+"cat": "traits",
+"aliases": []
+},
+{
+"id": 272,
+"ar": "أمام",
+"label": "أمام",
+"en": "in front of",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 273,
+"ar": "بجانب",
+"label": "بجانب",
+"en": "side",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 274,
+"ar": "بعيد",
+"label": "بعيد",
+"en": "far",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 275,
+"ar": "بين",
+"label": "بين",
+"en": "between",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 276,
+"ar": "تحت",
+"label": "تحت",
+"en": "under",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 277,
+"ar": "حول",
+"label": "حول",
+"en": "around",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 278,
+"ar": "خارج",
+"label": "خارج",
+"en": "outside",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 279,
+"ar": "خلف",
+"label": "خلف",
+"en": "back",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 280,
+"ar": "داخل",
+"label": "داخل",
+"en": "inside",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 281,
+"ar": "فوق",
+"label": "فوق",
+"en": "up",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 282,
+"ar": "قريب",
+"label": "قريب",
+"en": "near",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 283,
+"ar": "من خلال",
+"label": "من خلال",
+"en": "through",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 284,
+"ar": "هنا",
+"label": "هنا",
+"en": "here",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 285,
+"ar": "هناك",
+"label": "هناك",
+"en": "there",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 286,
+"ar": "يسار",
+"label": "يسار",
+"en": "left",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 287,
+"ar": "يمين",
+"label": "يمين",
+"en": "right",
+"cat": "places",
+"aliases": []
+},
+{
+"id": 288,
+"ar": "أهلا وسهلاً",
+"label": "أهلا وسهلاً",
+"en": "welcome",
+"cat": "social",
+"aliases": [
+"أهلا",
+"اهلا",
+"أهلاً",
+"مرحبا",
+"أهلا وسهلا",
+"اهلا وسهلا"
+]
+},
+{
+"id": 289,
+"ar": "السلام عليكم",
+"label": "السلام عليكم",
+"en": "greeting",
+"cat": "social",
+"aliases": [
+"سلام عليكم",
+"السلام"
+]
+},
+{
+"id": 290,
+"ar": "تفضل",
+"label": "تفضل",
+"en": "here you are",
+"cat": "social",
+"aliases": []
+},
+{
+"id": 291,
+"ar": "جار",
+"label": "جار",
+"en": "neighbor",
+"cat": "social",
+"aliases": []
+},
+{
+"id": 292,
+"ar": "شكراً",
+"label": "شكراً",
+"en": "thanks",
+"cat": "social",
+"aliases": [
+"شكرا",
+"متشكر",
+"شكرًا"
+]
+},
+{
+"id": 293,
+"ar": "صديق",
+"label": "صديق",
+"en": "friend",
+"cat": "social",
+"aliases": []
+},
+{
+"id": 294,
+"ar": "ضيف",
+"label": "ضيف",
+"en": "guest",
+"cat": "social",
+"aliases": []
+},
+{
+"id": 295,
+"ar": "عدو",
+"label": "عدو",
+"en": "enemy",
+"cat": "social",
+"aliases": []
+},
+{
+"id": 296,
+"ar": "عيب",
+"label": "عيب",
+"en": "fault",
+"cat": "social",
+"aliases": []
+},
+{
+"id": 297,
+"ar": "هدية",
+"label": "هدية",
+"en": "gift",
+"cat": "social",
+"aliases": []
+},
+{
+"id": 298,
+"ar": "بيت",
+"label": "بيت",
+"en": "house",
+"cat": "home",
+"aliases": [
+"منزل",
+"البيت"
+]
+},
+{
+"id": 299,
+"ar": "جدار",
+"label": "جدار",
+"en": "wall",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 300,
+"ar": "سقف",
+"label": "سقف",
+"en": "roof",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 301,
+"ar": "باب",
+"label": "باب",
+"en": "door",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 302,
+"ar": "شباك",
+"label": "شباك",
+"en": "window",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 303,
+"ar": "غرفة",
+"label": "غرفة",
+"en": "room",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 304,
+"ar": "غرفة نوم",
+"label": "غرفة نوم",
+"en": "bedroom",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 305,
+"ar": "سرير",
+"label": "سرير",
+"en": "bed",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 306,
+"ar": "مرتبة سرير",
+"label": "مرتبة سرير ( حشية)",
+"en": "mattress",
+"cat": "home",
+"aliases": [
+"مرتبة سرير",
+"حشية"
+]
+},
+{
+"id": 307,
+"ar": "شرشف",
+"label": "شرشف ( غطاء سرير)",
+"en": "bedsheet",
+"cat": "home",
+"aliases": [
+"شرشف",
+"غطاء سرير"
+]
+},
+{
+"id": 308,
+"ar": "وسادة",
+"label": "وسادة ( مخدة)",
+"en": "pillow",
+"cat": "home",
+"aliases": [
+"وسادة",
+"مخدة"
+]
+},
+{
+"id": 309,
+"ar": "شماعة",
+"label": "شماعة ( مشجب)",
+"en": "clothes rail",
+"cat": "home",
+"aliases": [
+"شماعة",
+"مشجب"
+]
+},
+{
+"id": 310,
+"ar": "خزانة ملابس",
+"label": "خزانة ملابس",
+"en": "wardrobe",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 311,
+"ar": "مطبخ",
+"label": "مطبخ",
+"en": "kitchen",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 312,
+"ar": "فرن غازي",
+"label": "فرن غازي",
+"en": "Oven",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 313,
+"ar": "بوتاغاز",
+"label": "بوتاغاز (طابخ)",
+"en": "cooker",
+"cat": "home",
+"aliases": [
+"بوتاغاز",
+"طابخ"
+]
+},
+{
+"id": 314,
+"ar": "طبق",
+"label": "طبق ( صحن)",
+"en": "dish",
+"cat": "home",
+"aliases": [
+"طبق",
+"صحن"
+]
+},
+{
+"id": 315,
+"ar": "سكين",
+"label": "سكين",
+"en": "knife",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 316,
+"ar": "شوكة",
+"label": "شوكة",
+"en": "fork",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 317,
+"ar": "ملعقة",
+"label": "ملعقة",
+"en": "spoon",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 318,
+"ar": "فنجان",
+"label": "فنجان",
+"en": "cupful",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 319,
+"ar": "مجمد",
+"label": "مجمد (فريزر)",
+"en": "freezer",
+"cat": "home",
+"aliases": [
+"مجمد",
+"فريزر"
+]
+},
+{
+"id": 320,
+"ar": "كأس",
+"label": "كأس ( كوب)",
+"en": "cup",
+"cat": "home",
+"aliases": [
+"كأس",
+"كوب"
+]
+},
+{
+"id": 321,
+"ar": "حافظ حرارة",
+"label": "حافظ حرارة ( ترمس)",
+"en": "thermos",
+"cat": "home",
+"aliases": [
+"حافظ حرارة",
+"ترمس"
+]
+},
+{
+"id": 322,
+"ar": "غرفة طعام",
+"label": "غرفة طعام",
+"en": "food room",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 323,
+"ar": "إبريق",
+"label": "إبريق",
+"en": "pitcher",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 324,
+"ar": "طاولة",
+"label": "طاولة",
+"en": "table",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 325,
+"ar": "كنكة",
+"label": "كنكة ( دلة)",
+"en": "dalah",
+"cat": "home",
+"aliases": [
+"كنكة",
+"دلة"
+]
+},
+{
+"id": 326,
+"ar": "دورة مياه",
+"label": "دورة مياه (حمام)",
+"en": "bathroom",
+"cat": "home",
+"aliases": [
+"دورة مياه",
+"حمام",
+"تواليت"
+]
+},
+{
+"id": 327,
+"ar": "كرسي",
+"label": "كرسي",
+"en": "chair",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 328,
+"ar": "غسالة",
+"label": "غسالة",
+"en": "washing machine",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 329,
+"ar": "منشفة",
+"label": "منشفة",
+"en": "towel carpet",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 330,
+"ar": "سجادة",
+"label": "سجادة (زربية)",
+"en": "carpet",
+"cat": "home",
+"aliases": [
+"سجادة",
+"زربية"
+]
+},
+{
+"id": 331,
+"ar": "موكيت",
+"label": "موكيت ( فرش أرضي) moquette",
+"en": "moquette",
+"cat": "home",
+"aliases": [
+"موكيت",
+"فرش أرضي"
+]
+},
+{
+"id": 332,
+"ar": "ثريا",
+"label": "ثريا (نجفة)",
+"en": "chandelier",
+"cat": "home",
+"aliases": [
+"ثريا",
+"نجفة"
+]
+},
+{
+"id": 333,
+"ar": "مسجل",
+"label": "مسجل",
+"en": "cassette",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 334,
+"ar": "شريط كاست",
+"label": "شريط كاست",
+"en": "cassette tape",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 335,
+"ar": "تلفزيون",
+"label": "تلفزيون (تلفاز)",
+"en": "television",
+"cat": "home",
+"aliases": [
+"تلفزيون",
+"تلفاز"
+]
+},
+{
+"id": 336,
+"ar": "طبق هوائي",
+"label": "طبق هوائي (دش)",
+"en": "satellite",
+"cat": "home",
+"aliases": [
+"طبق هوائي",
+"دش"
+]
+},
+{
+"id": 337,
+"ar": "شريط فيديو",
+"label": "شريط فيديو",
+"en": "video tape",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 338,
+"ar": "كاميرا فيديو",
+"label": "كاميرا فيديو",
+"en": "video camera",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 339,
+"ar": "كاميرا فوتوغرافية",
+"label": "كاميرا فوتوغرافية",
+"en": "photo camera",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 340,
+"ar": "هاتف",
+"label": "هاتف ( تلفون)",
+"en": "telephone",
+"cat": "home",
+"aliases": [
+"هاتف",
+"تلفون",
+"تليفون",
+"موبايل",
+"جوال"
+]
+},
+{
+"id": 341,
+"ar": "غرفة ضيوف",
+"label": "غرفة ضيوف",
+"en": "guests room",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 342,
+"ar": "فيديو",
+"label": "فيديو",
+"en": "video",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 343,
+"ar": "مبخرة",
+"label": "مبخرة",
+"en": "censer",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 344,
+"ar": "مدفأة",
+"label": "مدفأة",
+"en": "heater",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 345,
+"ar": "مفتاح",
+"label": "مفتاح",
+"en": "key",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 346,
+"ar": "مروحة",
+"label": "مروحة",
+"en": "fan",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 347,
+"ar": "تدفئة مركزية",
+"label": "تدفئة مركزية",
+"en": "central heater",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 348,
+"ar": "كهرباء",
+"label": "كهرباء",
+"en": "electrics",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 349,
+"ar": "مكيف",
+"label": "مكيف",
+"en": "air conditioner",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 350,
+"ar": "سلك كهربائي",
+"label": "سلك كهربائي",
+"en": "wire",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 351,
+"ar": "قابس كهربائي",
+"label": "قابس كهربائي ( فيش)",
+"en": "plug",
+"cat": "home",
+"aliases": [
+"قابس كهربائي",
+"فيش"
+]
+},
+{
+"id": 352,
+"ar": "حقيبة سفر",
+"label": "حقيبة سفر",
+"en": "bag",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 353,
+"ar": "مكواة",
+"label": "مكواة",
+"en": "iron",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 354,
+"ar": "ميزان حرارة جوي",
+"label": "ميزان حرارة جوي",
+"en": "thermometer",
+"cat": "home",
+"aliases": []
+},
+{
+"id": 355,
+"ar": "الله تعالى",
+"label": "الله تعالى",
+"en": "God",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 356,
+"ar": "محمد رسول الله",
+"label": "محمد رسول الله",
+"en": "Muhammad is the Messenger of Allah",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 357,
+"ar": "عيسى المسيح",
+"label": "عيسى المسيح",
+"en": "Essa Christ",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 358,
+"ar": "القرآن الكريم",
+"label": "القرآن الكريم",
+"en": "The Holy Quran",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 359,
+"ar": "الخلفاء الراشدون",
+"label": "الخلفاء الراشدون",
+"en": "Rightly Guided Caliphs",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 360,
+"ar": "السنة النبوية",
+"label": "السنة النبوية",
+"en": "Sunnah",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 361,
+"ar": "أركان الإسلام",
+"label": "أركان الإسلام",
+"en": "Pillars of Islam",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 362,
+"ar": "أركان الإيمان",
+"label": "أركان الإيمان",
+"en": "Pillars of Faith",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 363,
+"ar": "الشهادتين",
+"label": "الشهادتين",
+"en": "The two certificates",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 364,
+"ar": "يصلي",
+"label": "يصلي / الصلاة",
+"en": "pray",
+"cat": "religion",
+"aliases": [
+"يصلي",
+"الصلاة",
+"صلاة",
+"يصلى"
+]
+},
+{
+"id": 365,
+"ar": "الزكاة",
+"label": "الزكاة",
+"en": "zakat",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 366,
+"ar": "الصوم",
+"label": "الصوم",
+"en": "Fasting",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 367,
+"ar": "العمرة",
+"label": "العمرة",
+"en": "Umrah",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 368,
+"ar": "الحج",
+"label": "الحج",
+"en": "Pilgrimage",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 369,
+"ar": "ملائكة",
+"label": "ملائكة",
+"en": "Angels",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 370,
+"ar": "رسول",
+"label": "رسول",
+"en": "messenger",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 371,
+"ar": "يوم القيامة",
+"label": "يوم القيامة",
+"en": "Doomsday",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 372,
+"ar": "القضاء والقدر",
+"label": "القضاء والقدر",
+"en": "Fate and destiny",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 373,
+"ar": "أركان الصلاة",
+"label": "أركان الصلاة",
+"en": "Pillars of prayer",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 374,
+"ar": "خير",
+"label": "خير",
+"en": "Good",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 375,
+"ar": "النية",
+"label": "النية",
+"en": "Intention",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 376,
+"ar": "شر",
+"label": "شر",
+"en": "Evil",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 377,
+"ar": "طهارة",
+"label": "طهارة",
+"en": "purity",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 378,
+"ar": "مبطلات الصلاة",
+"label": "مبطلات الصلاة",
+"en": "Prayer invalidators",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 379,
+"ar": "تيمم",
+"label": "تيمم",
+"en": "tayammum",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 380,
+"ar": "يتوضأ",
+"label": "يتوضأ / وضوء",
+"en": "ablution",
+"cat": "religion",
+"aliases": [
+"يتوضأ",
+"وضوء",
+"الوضوء"
+]
+},
+{
+"id": 381,
+"ar": "يؤذن",
+"label": "يؤذن",
+"en": "authorized",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 382,
+"ar": "مسح على الخفين",
+"label": "مسح على الخفين",
+"en": "Wipe on the slippers",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 383,
+"ar": "صلاة الفجر",
+"label": "صلاة الفجر",
+"en": "Al-fajr prayer",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 384,
+"ar": "صلاة الظهر",
+"label": "صلاة الظهر",
+"en": "Salat Aduher",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 385,
+"ar": "صلاة العصر",
+"label": "صلاة العصر",
+"en": "Asr prayer",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 386,
+"ar": "صلاة المغرب",
+"label": "صلاة المغرب",
+"en": "Maghreb's prayer",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 387,
+"ar": "صلاة العشاء",
+"label": "صلاة العشاء",
+"en": "eshaa pray",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 388,
+"ar": "خطبة",
+"label": "خطبة",
+"en": "speech",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 389,
+"ar": "خطبة الجمعة",
+"label": "خطبة الجمعة",
+"en": "Friday sermon",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 390,
+"ar": "خطيب",
+"label": "خطيب",
+"en": "Fiance",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 391,
+"ar": "خطبة العيد",
+"label": "خطبة العيد",
+"en": "Eid sermon",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 392,
+"ar": "مسجد",
+"label": "مسجد",
+"en": "Mosque",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 393,
+"ar": "سورة",
+"label": "سورة",
+"en": "surah",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 394,
+"ar": "إمام",
+"label": "إمام",
+"en": "Before",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 395,
+"ar": "سورة الفاتحة",
+"label": "سورة الفاتحة",
+"en": "Al-Fatihah",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 396,
+"ar": "آية",
+"label": "آية",
+"en": "any",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 397,
+"ar": "ليلة القدر",
+"label": "ليلة القدر",
+"en": "Night of Power",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 398,
+"ar": "عيد",
+"label": "عيد",
+"en": "Feast",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 399,
+"ar": "عيد الفطر",
+"label": "عيد الفطر",
+"en": "Eid al-Fitr",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 400,
+"ar": "عيد الأضحى",
+"label": "عيد الأضحى",
+"en": "Eid al-Adha",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 401,
+"ar": "إحرام",
+"label": "إحرام",
+"en": "Ihram",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 402,
+"ar": "مكة",
+"label": "مكة",
+"en": "Mecca",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 403,
+"ar": "الكعبة",
+"label": "الكعبة",
+"en": "Kaaba",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 404,
+"ar": "المدينة المنورة",
+"label": "المدينة المنورة",
+"en": "Medina",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 405,
+"ar": "منى",
+"label": "منى",
+"en": "Mona",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 406,
+"ar": "جبل عرفات",
+"label": "جبل عرفات",
+"en": "Arafat Mountain",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 407,
+"ar": "الصفا والمروة",
+"label": "الصفا والمروة",
+"en": "Safa and Marwa",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 408,
+"ar": "مزدلفة",
+"label": "مزدلفة",
+"en": "Muzdalifah",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 409,
+"ar": "رمي الجمرات",
+"label": "رمي الجمرات",
+"en": "Throwing pebbles",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 410,
+"ar": "طواف",
+"label": "طواف",
+"en": "circumambulation",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 411,
+"ar": "ماء زمزم",
+"label": "ماء زمزم",
+"en": "Zamzam water",
+"cat": "religion",
+"aliases": [
+"زمزم"
+]
+},
+{
+"id": 412,
+"ar": "الأضحية",
+"label": "الأضحية",
+"en": "the sacrifice",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 413,
+"ar": "فك الإحرام",
+"label": "فك الإحرام",
+"en": "break the ihram",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 414,
+"ar": "طواف الوداع",
+"label": "طواف الوداع",
+"en": "farewell circumambulation",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 415,
+"ar": "المسجد الأقصى",
+"label": "المسجد الأقصى",
+"en": "Al-Aqsa Mosque",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 416,
+"ar": "يسبح",
+"label": "يسبح",
+"en": "swim",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 417,
+"ar": "الحمد لله",
+"label": "الحمد لله",
+"en": "Thank God",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 418,
+"ar": "سبحان الله",
+"label": "سبحان الله",
+"en": "How great is our God",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 419,
+"ar": "إيمان",
+"label": "إيمان",
+"en": "Faith",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 420,
+"ar": "الشرك بالله",
+"label": "الشرك بالله",
+"en": "Polytheism",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 421,
+"ar": "أعوذ بالله",
+"label": "أعوذ بالله",
+"en": "I seek refuge in God",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 422,
+"ar": "شيطان",
+"label": "شيطان",
+"en": "Satan",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 423,
+"ar": "جن",
+"label": "جن",
+"en": "genie",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 424,
+"ar": "الضالون",
+"label": "الضالون",
+"en": "the lost",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 425,
+"ar": "المغضوب عليهم",
+"label": "المغضوب عليهم",
+"en": "angered them",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 426,
+"ar": "صنم",
+"label": "صنم",
+"en": "fetish",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 427,
+"ar": "زنى",
+"label": "زنى",
+"en": "fornication",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 428,
+"ar": "الجنة",
+"label": "الجنة",
+"en": "the Paradise",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 429,
+"ar": "النار",
+"label": "النار",
+"en": "fire",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 430,
+"ar": "روح",
+"label": "روح",
+"en": "spirit",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 431,
+"ar": "حقوق",
+"label": "حقوق",
+"en": "rights",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 432,
+"ar": "واجبات",
+"label": "واجبات",
+"en": "Duties",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 433,
+"ar": "حسنات",
+"label": "حسنات",
+"en": "Deeds",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 434,
+"ar": "سيئات",
+"label": "سيئات",
+"en": "sins",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 435,
+"ar": "حلال",
+"label": "حلال",
+"en": "halal",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 436,
+"ar": "حرام",
+"label": "حرام",
+"en": "forbidden",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 437,
+"ar": "مغفرة",
+"label": "مغفرة",
+"en": "forgiveness",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 438,
+"ar": "دين",
+"label": "دين",
+"en": "religion",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 439,
+"ar": "مسيحي",
+"label": "مسيحي",
+"en": "Christian",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 440,
+"ar": "يهودي",
+"label": "يهودي",
+"en": "Jewish",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 441,
+"ar": "كنيسة",
+"label": "كنيسة",
+"en": "church",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 442,
+"ar": "إسراء ومعراج",
+"label": "إسراء ومعراج",
+"en": "Isra and Miraj",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 443,
+"ar": "حواء",
+"label": "حواء",
+"en": "Eve",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 444,
+"ar": "آدم",
+"label": "آدم",
+"en": "Adam",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 445,
+"ar": "صدقة",
+"label": "صدقة",
+"en": "charity",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 446,
+"ar": "نبي",
+"label": "نبي",
+"en": "Prophet",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 447,
+"ar": "هداية",
+"label": "هداية",
+"en": "guidance",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 448,
+"ar": "أمانة",
+"label": "أمانة",
+"en": "honesty",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 449,
+"ar": "شهيد",
+"label": "شهيد",
+"en": "martyr",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 450,
+"ar": "حقوق الوالدين",
+"label": "حقوق الوالدين",
+"en": "Parental rights",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 451,
+"ar": "عقوق الوالدين",
+"label": "عقوق الوالدين",
+"en": "Disobedience to parents",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 452,
+"ar": "مسلم",
+"label": "مسلم",
+"en": "Muslim",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 453,
+"ar": "رحمة",
+"label": "رحمة",
+"en": "Mercy",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 454,
+"ar": "عيد رأس السنة",
+"label": "عيد رأس السنة",
+"en": "New Year's Holiday",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 455,
+"ar": "فروض",
+"label": "فروض",
+"en": "homework",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 456,
+"ar": "قبة الصخرة",
+"label": "قبة الصخرة",
+"en": "Dome of the Rock",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 457,
+"ar": "خلق",
+"label": "خلق",
+"en": "Create",
+"cat": "religion",
+"aliases": []
+},
+{
+"id": 458,
+"ar": "مهندس",
+"label": "مهندس",
+"en": "engineer",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 459,
+"ar": "مصور فوتوغرافي",
+"label": "مصور فوتوغرافي",
+"en": "photographer",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 460,
+"ar": "جزار",
+"label": "جزار / قصاب",
+"en": "Meat man",
+"cat": "jobs",
+"aliases": [
+"جزار",
+"قصاب"
+]
+},
+{
+"id": 461,
+"ar": "سائق",
+"label": "سائق",
+"en": "driver",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 462,
+"ar": "صائغ",
+"label": "صائغ",
+"en": "jeweler",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 463,
+"ar": "خادم",
+"label": "خادم",
+"en": "servant",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 464,
+"ar": "رئيس قسم",
+"label": "رئيس قسم",
+"en": "chairman",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 465,
+"ar": "حداد",
+"label": "حداد",
+"en": "blacksmith",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 466,
+"ar": "لحام كهربائي",
+"label": "لحام كهربائي",
+"en": "weld",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 467,
+"ar": "مترجم لغة الإشارة",
+"label": "مترجم لغة الإشارة",
+"en": "Sign language translator",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 468,
+"ar": "مذيع",
+"label": "مذيع",
+"en": "announcer",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 469,
+"ar": "مترجم لغات",
+"label": "مترجم لغات",
+"en": "translator",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 470,
+"ar": "مدير",
+"label": "مدير",
+"en": "manager",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 471,
+"ar": "سفير",
+"label": "سفير",
+"en": "ambassador",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 472,
+"ar": "وزير",
+"label": "وزير",
+"en": "minister",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 473,
+"ar": "ملك",
+"label": "ملك / سلطان",
+"en": "King",
+"cat": "jobs",
+"aliases": [
+"ملك",
+"سلطان"
+]
+},
+{
+"id": 474,
+"ar": "أمير البلاد",
+"label": "أمير البلاد / رئيس الجمهورية",
+"en": "Premier Minister",
+"cat": "jobs",
+"aliases": [
+"أمير البلاد",
+"رئيس الجمهورية"
+]
+},
+{
+"id": 475,
+"ar": "شيخ",
+"label": "شيخ",
+"en": "sheikh",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 476,
+"ar": "محافظ",
+"label": "محافظ / وال",
+"en": "governor",
+"cat": "jobs",
+"aliases": [
+"محافظ",
+"وال",
+"والي"
+]
+},
+{
+"id": 477,
+"ar": "ولي عهد",
+"label": "ولي عهد / وكيل وزارة",
+"en": "under secretary of state",
+"cat": "jobs",
+"aliases": [
+"ولي عهد",
+"وكيل وزارة"
+]
+},
+{
+"id": 478,
+"ar": "رئيس مجلس الشعب",
+"label": "رئيس مجلس الشعب (النواب)",
+"en": "speaker",
+"cat": "jobs",
+"aliases": [
+"رئيس مجلس الشعب",
+"النواب"
+]
+},
+{
+"id": 479,
+"ar": "أمين عام",
+"label": "أمين عام",
+"en": "general secretary",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 480,
+"ar": "صحفي",
+"label": "صحفي",
+"en": "journalist",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 481,
+"ar": "رسام",
+"label": "رسام",
+"en": "draftsman",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 482,
+"ar": "خياط",
+"label": "خياط / تارزي",
+"en": "tailor",
+"cat": "jobs",
+"aliases": [
+"خياط",
+"تارزي"
+]
+},
+{
+"id": 483,
+"ar": "ضابط",
+"label": "ضابط",
+"en": "policeman",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 484,
+"ar": "طيار",
+"label": "طيار",
+"en": "pilot",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 485,
+"ar": "جندي",
+"label": "جندي",
+"en": "soldier",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 486,
+"ar": "حلاق",
+"label": "حلاق",
+"en": "barber",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 487,
+"ar": "صباغ",
+"label": "صباغ",
+"en": "dyer",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 488,
+"ar": "رجل إطفاء",
+"label": "رجل إطفاء / دفاع مدني",
+"en": "fireman",
+"cat": "jobs",
+"aliases": [
+"رجل إطفاء",
+"دفاع مدني"
+]
+},
+{
+"id": 489,
+"ar": "نجار",
+"label": "نجار",
+"en": "carpenter",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 490,
+"ar": "معلم",
+"label": "معلم / مدرس",
+"en": "teacher",
+"cat": "jobs",
+"aliases": [
+"معلم",
+"مدرس",
+"أستاذ",
+"استاذ"
+]
+},
+{
+"id": 491,
+"ar": "طباخ",
+"label": "طباخ",
+"en": "chef",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 492,
+"ar": "فلاح",
+"label": "فلاح",
+"en": "farmer",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 493,
+"ar": "موظف",
+"label": "موظف",
+"en": "agent",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 494,
+"ar": "أمين صندوق",
+"label": "أمين صندوق",
+"en": "treasurer",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 495,
+"ar": "صيدلي",
+"label": "صيدلي",
+"en": "pharmacist",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 496,
+"ar": "طبيب",
+"label": "طبيب",
+"en": "doctor",
+"cat": "jobs",
+"aliases": [
+"دكتور"
+]
+},
+{
+"id": 497,
+"ar": "ممرضة",
+"label": "ممرضة",
+"en": "nurse",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 498,
+"ar": "ممرض",
+"label": "ممرض",
+"en": "orderly",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 499,
+"ar": "محام",
+"label": "محام",
+"en": "lawyer",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 500,
+"ar": "انتقال",
+"label": "انتقال",
+"en": "traveling",
+"cat": "jobs",
+"aliases": []
+},
+{
+"id": 501,
+"ar": "تعيين",
+"label": "تعيين",
+"en": "appointment",
+"cat": "jobs",
+"aliases": []
+}
+]
