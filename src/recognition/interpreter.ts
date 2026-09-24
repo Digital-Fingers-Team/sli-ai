@@ -1,6 +1,6 @@
 // Frame-by-frame interpretation of landmarks into signs, in one of three modes:
 //   words   - the word decoder only (the sequence model, 502 signs);
-//   letters - the speller only (the per-frame hand-shape model);
+//   letters - the speller only (the hand-shape model, see letters.ts);
 //   auto    - both, so a sentence can mix signed words and spelled names. Letters are held
 //             still and words move, so the speller only types while the hand is still and
 //             raised. Words have still moments too, so the word model (which also knows the
@@ -11,7 +11,7 @@
 import { frameFeatures, type Point, type RawFrame } from './features';
 import { Decoder, DEFAULT_OPTIONS, type Commit, type DecoderEvents, type DecoderOptions } from './decoder';
 import { DEFAULT_SPELLER, Speller, type SpellerOptions } from './speller';
-import type { LetterClassifier } from './letters';
+import type { LetterClassifier, LetterStream } from './letters';
 import type { Guess } from './topk';
 
 export type SignMode = 'auto' | 'words' | 'letters';
@@ -57,11 +57,12 @@ export class Interpreter {
   private decoder: Decoder;
   private speller: Speller;
   private prev: { t: number; lms: Point[] } | null = null;
+  private letterStream: LetterStream;
   private speed = 0; // palm lengths per second, smoothed
 
   constructor(
     classify: (seq: Float32Array) => Promise<Guess[]>,
-    private letters: LetterClassifier,
+    letters: LetterClassifier,
     private events: DecoderEvents,
     private mode: SignMode = 'auto',
     private opts: InterpreterOptions = DEFAULT_INTERPRETER,
@@ -85,6 +86,7 @@ export class Interpreter {
       },
       opts.decoder,
     );
+    this.letterStream = letters.stream();
     this.speller = new Speller(
       letters.classes,
       {
@@ -123,6 +125,7 @@ export class Interpreter {
   reset() {
     this.decoder.reset();
     this.speller.reset();
+    this.letterStream.reset();
     this.prev = null;
     this.speed = 0;
     this.spelling = false;
@@ -139,7 +142,7 @@ export class Interpreter {
     this.trackMotion(t, hand);
     this.raised = !hand || !raw.pose || height(hand, raw.pose) >= this.opts.minHeight;
     const holding = this.mode === 'letters' || (this.still && this.raised);
-    if (this.mode !== 'words') this.speller.push(t, hand ? this.letters.predict(hand) : null, holding);
+    if (this.mode !== 'words') this.speller.push(t, this.letterStream.push(hand ?? null), holding);
     if (this.mode !== 'letters') await this.decoder.push(t, frameFeatures(raw), raw.hands.length > 0);
   }
 

@@ -5,8 +5,10 @@ SLI translates **Arabic Sign Language ⇄ Arabic text ⇄ speech**, entirely in 
 - **Sign → text → speech.** Sign in front of the camera; the word appears while you sign and
   builds a sentence that can be spoken aloud in Arabic. Each word can be swapped for the
   model's next-best guesses.
-- **Live fingerspelling.** Each hand shape is read frame by frame, so letters are typed one
-  after another without lowering the hand.
+- **Live fingerspelling.** The hand shape and the wrist's last few positions are read every
+  frame, so letters are typed one after another without lowering the hand.
+- **Teach the app your hand.** Sign each letter once (about two minutes) and the letter model
+  is fine-tuned on the device to that person: on signers it never saw, 77% → 86% of letters.
 - **Words and letters together.** In Auto mode (the default) a still, raised hand is read as a
   letter and movement as a word, so a sentence can mix signed words and spelled names.
   Words and Letters modes restrict it to one kind.
@@ -48,8 +50,9 @@ On the KArSL **test** split (details and method in `training/README.md`):
 - **Isolated signs:** 97.0% top-1, 99.6% top-5 over 1,506 videos (502 signs × 3 signers).
 - **3-sign sentences through the app pipeline, 15 fps:** 93% of words with a short pause
   between signs, 54% when signing straight through without lowering the hands.
-- **Letters, on a signer the model never saw:** 76.5% (leave-one-signer-out over KArSL's three
-  signers). Most errors are letters sharing a hand shape (ي/ى/ئ, ت/ة, ج/ح, ز/ذ).
+- **Letters, on a signer the model never saw:** 77.0% (leave-one-signer-out over KArSL's three
+  signers), 86.4% after that person teaches the app their hand (one recording per letter).
+  Most errors are letters sharing a hand shape (ي/ى/ئ, ت/ة, ج/ح, ز/ذ).
 - **Auto mode, word–letter–letter–word sentences with brief pauses:** 91% (letter model that
   never saw the signer). Spelling without pauses is better in Letters mode (78% vs 43%).
 - **Hand location matters:** moving the same movement to another sign's place drops the word

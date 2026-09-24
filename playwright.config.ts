@@ -27,7 +27,7 @@ export default defineConfig({
   projects: [
     {
       name: 'words',
-      testIgnore: /(letters|framing)\.spec/,
+      testIgnore: /(letters|framing|teach)\.spec/,
       use: camera(process.env.SLI_FAKE_CAMERA ?? 'tests/fixtures/camera.y4m'),
     },
     {
@@ -37,7 +37,7 @@ export default defineConfig({
     },
     {
       name: 'letters',
-      testMatch: /letters\.spec/,
+      testMatch: /(letters|teach)\.spec/,
       use: camera(process.env.SLI_LETTERS_CAMERA ?? 'tests/fixtures/camera-letters.y4m'),
     },
   ],

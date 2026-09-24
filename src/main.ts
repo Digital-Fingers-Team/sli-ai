@@ -6,14 +6,16 @@ import { mountText } from './pages/text';
 import { mountTalk } from './pages/talk';
 import { mountDict } from './pages/dict';
 import { mountAbout } from './pages/about';
+import { mountTeach } from './pages/teach';
 
-type Route = 'sign' | 'text' | 'talk' | 'dict' | 'about';
+type Route = 'sign' | 'text' | 'talk' | 'dict' | 'about' | 'teach';
 const ROUTES: Record<Route, (root: HTMLElement, q?: string) => () => void> = {
   sign: mountSign,
   text: mountText,
   talk: mountTalk,
   dict: mountDict,
   about: mountAbout,
+  teach: mountTeach, // reached from the sign page, not the main nav
 };
 const NAV: [Route, string, () => string][] = [
   ['sign', 'hand', () => t().navSign],
@@ -94,7 +96,9 @@ function render() {
     main,
   );
   cleanup = ROUTES[route](main, q);
-  document.title = `${t().appName} — ${NAV.find(([r]) => r === route)![2]()}`;
+  // Pages outside the main nav (teach) have their own title.
+  const label = NAV.find(([r]) => r === route)?.[2] ?? (() => t().teachTitle);
+  document.title = `${t().appName} — ${label()}`;
 }
 
 setLang(lang());

@@ -5,7 +5,7 @@
 //   SLI_MODE=auto|words|letters   interpreter mode (default words)
 //   SLI_MIX=any|mixed|letters     sentences of 3 random signs / word, letter, letter, word / 3 letters
 //   SLI_SIGNER=01                 only that signer's videos (pair with a letter model trained
-//   SLI_LETTERS_MODEL=path        without them: train_letters.py --exclude 01)
+//   SLI_LETTERS_MODEL=path        without them: train_letters_seq.py --exclude 01 ...)
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import * as ort from 'onnxruntime-node';
@@ -21,7 +21,7 @@ const TRIALS = Number(process.env.SLI_REPLAY_TRIALS ?? 40);
 const MODE = (process.env.SLI_MODE ?? 'words') as SignMode;
 const MIX = process.env.SLI_MIX ?? 'any';
 const lettersModel: LetterModelFile = JSON.parse(
-  readFileSync(process.env.SLI_LETTERS_MODEL ?? new URL('../../public/models/letters.json', import.meta.url).pathname, 'utf8'),
+  readFileSync(process.env.SLI_LETTERS_MODEL ?? new URL('../../public/models/letters-seq.json', import.meta.url).pathname, 'utf8'),
 );
 const letters = new (LetterClassifier as unknown as new (m: LetterModelFile) => LetterClassifier)(lettersModel);
 // SLI_CONTINUOUS=1: signs follow each other without lowering the hands (each clip's hand-less

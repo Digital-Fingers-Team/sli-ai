@@ -19,7 +19,7 @@ const copy = {
     sentencesText:
       'في جمل من ثلاث إشارات بمعدل 15 إطارًا في الثانية: يتعرف على نحو 93% من الكلمات إذا توقفت لحظة بين الإشارات، ونحو 54% إذا أشرت دون توقف؛ لذلك يساعد التوقف القصير كثيرًا. وفي جمل تخلط كلمتين وحرفين مهجّاين (الوضع التلقائي، مع توقف قصير): نحو 91%. لتهجئة الأسماء الطويلة بسرعة، وضع «حروف» أدق.',
     lettersText: (m: typeof metrics) =>
-      `نموذج الحروف اختُبر على مؤشر لم يره أثناء التدريب (دُرّب على الاثنين الآخرين، وكُرر ذلك للثلاثة): أصاب ${pct(m.letters.videos)} من الحروف. أكثر ما يلتبس الحروف المتشابهة في الشكل ولا تختلف إلا بالحركة أو الهمزة، مثل ي/ى/ئ وت/ة وج/ح؛ اضغط على الحرف لاختيار البديل.`,
+      `نموذج الحروف اختُبر على مؤشر لم يره أثناء التدريب (دُرّب على الاثنين الآخرين، وكُرر ذلك للثلاثة): أصاب ${pct(m.letters.videos)} من الحروف، و${pct(m.letters.calibrated)} بعد أن «علّم التطبيق يده» بتسجيل كل حرف مرة واحدة. أكثر ما يلتبس الحروف المتشابهة في الشكل ولا تختلف إلا بالحركة أو الهمزة، مثل ي/ى/ئ وت/ة وج/ح؛ اضغط على الحرف لاختيار البديل.`,
     caveat:
       'مؤشرو اختبار نموذج الكلمات ظهروا أيضًا في بيانات تدريبه، لذا ستكون دقته مع أشخاص جدد أقل. أفضل النتائج: إضاءة جيدة، الجزء العلوي من الجسم كاملًا داخل الصورة، وأداء الإشارة كما في القاموس.',
     language: 'اللغة',
@@ -42,7 +42,7 @@ const copy = {
     sentencesText:
       'In three-sign sentences at 15 frames per second, about 93% of words are recognised with a brief pause between signs and about 54% when signing straight through, so a short pause helps a lot. Sentences mixing two words and two spelled letters (Auto mode, brief pauses): about 91%. For spelling long names quickly, Letters mode is more accurate.',
     lettersText: (m: typeof metrics) =>
-      `The letter model was tested on a signer it never saw (trained on the other two, repeated for all three): it got ${pct(m.letters.videos)} of letters right. The usual mix-ups are letters with the same hand shape that differ only by movement or a hamza, such as ي/ى/ئ, ت/ة and ج/ح; tap a letter to pick the alternative.`,
+      `The letter model was tested on a signer it never saw (trained on the other two, repeated for all three): it got ${pct(m.letters.videos)} of letters right, and ${pct(m.letters.calibrated)} after that person taught the app their hand by recording each letter once. The usual mix-ups are letters with the same hand shape that differ only by movement or a hamza, such as ي/ى/ئ, ت/ة and ج/ح; tap a letter to pick the alternative.`,
     caveat:
       'The word model’s test signers also appear in its training data, so accuracy for new people will be lower. Best results: good light, your whole upper body in frame, and signs performed as in the dictionary.',
     language: 'Language',

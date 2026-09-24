@@ -12,13 +12,13 @@
   "numbers": 0.9785,
   "places": 0.9792,
   "religion": 0.9806,
-  "social": 1.0,
+  "social": 1,
   "traits": 0.9388,
   "verbs": 0.9688
  },
  "letters": {
   "signers": 3,
-  "videos": 0.7653,
-  "frames": 0.74
+  "videos": 0.77,
+  "calibrated": 0.864
  }
 }

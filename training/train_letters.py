@@ -1,4 +1,8 @@
-"""Train the live letter model: one hand, one frame -> which of KArSL's 39 letter signs.
+"""One-frame letter model: one hand, one frame -> which of KArSL's 39 letter signs.
+
+Superseded in the app by train_letters_seq.py (hand shape + wrist path, and on-device
+calibration); kept for the experiments in training/README.md. It no longer writes the app's
+metrics or fixtures, and its default output is not a file the app loads.
 
 Usage: python train_letters.py LETTERS_JSON [--out ../public/models/letters.json]
 LETTERS_JSON comes from extract_letters.py. Accuracy is reported leave-one-signer-out (train
@@ -16,7 +20,7 @@ import numpy as np
 
 ap = argparse.ArgumentParser()
 ap.add_argument("letters")
-ap.add_argument("--out", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "models", "letters.json"))
+ap.add_argument("--out", default="letters-one-frame.json")
 ap.add_argument("--epochs", type=int, default=60)
 ap.add_argument("--hidden", type=int, default=128)
 ap.add_argument("--span", default="0.3,0.8", help="part of each video's hand frames that shows the letter")
@@ -28,7 +32,7 @@ ap.add_argument("--location", action="store_true",
 ap.add_argument("--quick", action="store_true", help="evaluation only, do not write the model")
 ap.add_argument("--fixture-only", action="store_true", help="only rewrite the parity fixture from the model in --out")
 ap.add_argument("--exclude", help="train without this signer and write only the model (for tests/replay with SLI_SIGNER)")
-ap.add_argument("--fixture", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tests", "fixtures", "letters-parity.json"))
+ap.add_argument("--fixture", default="letters-one-frame-parity.json")
 args = ap.parse_args()
 
 videos = json.load(open(args.letters))
@@ -186,9 +190,7 @@ def write_metrics(report):
 
 
 if args.fixture_only:
-    model = json.load(open(args.out))
-    write_fixture(model)
-    write_metrics(model["heldOut"])
+    write_fixture(json.load(open(args.out)))
     raise SystemExit
 
 rng = np.random.default_rng(0)
@@ -232,4 +234,3 @@ json.dump(model, open(args.out, "w"), separators=(",", ":"))
 print("wrote", args.out, os.path.getsize(args.out) // 1024, "KB")
 if not args.exclude:
     write_fixture(model)
-    write_metrics(report)

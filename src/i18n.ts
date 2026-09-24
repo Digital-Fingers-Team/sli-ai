@@ -15,6 +15,8 @@ const ar = {
   signTitle: 'أشِر أمام الكاميرا',
   signHint: 'أشِر أمام الكاميرا بيد واحدة أو بيدين؛ تظهر الترجمة وأنت تشير.',
   modeLabel: 'نوع الإشارة',
+  teachLink: 'علّم التطبيق يدك لحروف أدق',
+  teachTitle: 'علّم التطبيق يدك',
   framing: {
     handOut: 'يدك خارج الصورة: ابتعد قليلًا عن الكاميرا.',
     tooClose: 'ابتعد قليلًا عن الكاميرا حتى تبقى يداك داخل الصورة.',
@@ -108,6 +110,8 @@ const en: Dict = {
   signTitle: 'Sign in front of the camera',
   signHint: 'Sign to the camera with one hand or both; the translation appears as you sign.',
   modeLabel: 'What are you signing?',
+  teachLink: 'Teach the app your hand for better letters',
+  teachTitle: 'Teach the app your hand',
   framing: {
     handOut: 'Your hand is outside the picture: move back a little.',
     tooClose: 'Move back a little so both hands stay in the picture.',

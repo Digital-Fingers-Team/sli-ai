@@ -65,7 +65,7 @@ export class Capture {
       h('div', { class: 'mode-switch', role: 'group', 'aria-label': t().modeLabel }, ...this.modeButtons),
       this.stage,
       this.hint,
-      h('div', { class: 'capture-actions' }, this.toggleBtn),
+      h('div', { class: 'capture-actions' }, this.toggleBtn, h('a', { class: 'btn ghost', href: '#/teach' }, icon('hand'), t().teachLink)),
     );
     this.engine = new Engine(this.video, {
       onStatus: (s, d) => this.setStatus(s, d),
