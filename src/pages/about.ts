@@ -9,7 +9,7 @@ const copy = {
     how: 'كيف يعمل',
     steps: [
       'تحدد MediaPipe نقاط الجسم والوجه واليدين (يد واحدة أو اثنتين) في كل إطار من الكاميرا، على جهازك.',
-      'يقرأ نموذج ST-Transformer حركة هذه النقاط عبر الزمن ويختار واحدة من 502 إشارة، ويقرأ نموذج أصغر شكل اليد في كل إطار ليكتب الحروف واليد ما زالت مرفوعة. في الوضع «التلقائي» يعملان معًا: اليد الساكنة المرفوعة تُقرأ حرفًا، والحركة تُقرأ كلمة، فيمكن خلط الكلمات والأسماء المهجّاة في جملة واحدة.',
+      'يقرأ نموذج ST-Transformer حركة هذه النقاط عبر الزمن، وشكل اليد ومكانها بالنسبة للجسم والرأس، ويختار واحدة من 502 إشارة، ويقرأ نموذج أصغر شكل اليد في كل إطار ليكتب الحروف واليد ما زالت مرفوعة. في الوضع «التلقائي» يعملان معًا: اليد الساكنة المرفوعة تُقرأ حرفًا، والحركة تُقرأ كلمة، فيمكن خلط الكلمات والأسماء المهجّاة في جملة واحدة.',
       'تظهر الكلمة باهتة وأنت تشير، وتُثبَّت حين تنتقل إلى الإشارة التالية أو تُنزل يديك، ثم يمكن نطق الجملة بالصوت العربي في المتصفح.',
       'في الاتجاه المعاكس، يُطابق النص مع القاموس (مع تجاهل التشكيل واختلاف الهمزات والبادئات مثل «ال» و«و»)، وتُعرض إشارة مصوّرة لكل كلمة، وتُهجّى الكلمات غير المعروفة بالحروف.',
     ],
@@ -32,7 +32,7 @@ const copy = {
     how: 'How it works',
     steps: [
       'MediaPipe finds body, face and hand points (one hand or both) in each camera frame, on your device.',
-      'An ST-Transformer reads how those points move over time and picks one of 502 signs, and a smaller model reads the hand shape in every frame to type letters while the hand is still up. In Auto mode both work together: a still, raised hand is read as a letter and movement as a word, so words and spelled names can be mixed in one sentence.',
+      'An ST-Transformer reads how those points move over time, the hand shape and where the hands are relative to the body and head, and picks one of 502 signs, and a smaller model reads the hand shape in every frame to type letters while the hand is still up. In Auto mode both work together: a still, raised hand is read as a letter and movement as a word, so words and spelled names can be mixed in one sentence.',
       'A word shows faintly while you sign and is confirmed when you move on to the next sign or lower your hands; the sentence can then be spoken with the browser’s Arabic voice.',
       'The other way round, text is matched against the dictionary (ignoring diacritics, hamza spellings and prefixes like ال and و), each word is shown as a recorded sign, and unknown words are fingerspelled.',
     ],

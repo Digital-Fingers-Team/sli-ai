@@ -23,6 +23,8 @@ ap.add_argument("--span", default="0.3,0.8", help="part of each video's hand fra
 ap.add_argument("--mirror", choices=["none", "label"], default="none",
                 help="label: mirror one handedness label onto the other (MediaPipe's label flips with hand orientation)")
 ap.add_argument("--extra", action="store_true", help="add fingertip-to-fingertip and fingertip-to-wrist distances")
+ap.add_argument("--location", action="store_true",
+                help="add where the wrist is relative to the shoulders and the nose (needs extract_letters_pose.py output)")
 ap.add_argument("--quick", action="store_true", help="evaluation only, do not write the model")
 ap.add_argument("--fixture-only", action="store_true", help="only rewrite the parity fixture from the model in --out")
 ap.add_argument("--exclude", help="train without this signer and write only the model (for tests/replay with SLI_SIGNER)")
@@ -40,7 +42,18 @@ PAIRS = [(a, b) for i, a in enumerate(TIPS) for b in TIPS[i + 1:]]
 lo, hi = map(float, args.span.split(","))
 
 
-def letter_features(lms, label):
+def location(lms, label, pose):
+    """Wrist relative to the shoulder midpoint and to the nose, in shoulder widths."""
+    if not pose:
+        return [0.0, 0.0, 0.0, 0.0]
+    (nx, ny), (lx, ly), (rx, ry) = pose
+    width = max(float(np.hypot(lx - rx, ly - ry)), 1e-6)
+    wx, wy = lms[0][0], lms[0][1]
+    flip = -1.0 if label == MIRROR else 1.0
+    return [flip * (wx - (lx + rx) / 2) / width, (wy - (ly + ry) / 2) / width, flip * (wx - nx) / width, (wy - ny) / width]
+
+
+def letter_features(lms, label, pose=None):
     p = np.asarray(lms, dtype=np.float64)
     p = p - p[0]
     scale = max(float(np.hypot(p[9, 0], p[9, 1])), 1e-6)
@@ -50,26 +63,40 @@ def letter_features(lms, label):
     out = p.reshape(-1)
     if args.extra:
         out = np.concatenate([out, [np.linalg.norm(p[a] - p[b]) for a, b in PAIRS]])
+    if args.location:
+        out = np.concatenate([out, location(lms, label, pose)])
     return out
 
 
 def samples(vids):
     X, y, vid = [], [], []
     for k, v in enumerate(vids):
-        hand = [f for f in v["frames"] if f]
+        hand = [(i, f) for i, f in enumerate(v["frames"]) if f]
         n = len(hand)
-        for f in hand[int(n * lo): max(int(n * hi), int(n * lo) + 1)]:
-            X.append(letter_features(f["lms"], f["label"]))
+        for i, f in hand[int(n * lo): max(int(n * hi), int(n * lo) + 1)]:
+            X.append(letter_features(f["lms"], f["label"], v["pose"][i] if args.location else None))
             y.append(cls_index[v["sign"]])
             vid.append(k)
     return np.array(X, dtype=np.float32), np.array(y), np.array(vid)
 
 
 def augment(X, rng):
-    """Small in-plane rotations, per-axis stretch and jitter: other people hold their hands differently."""
-    if X.shape[1] > 63:  # distances are recomputed from the augmented points
-        P = augment(X[:, :63], rng).reshape(len(X), 21, 3)
-        return np.concatenate([P.reshape(len(X), -1), np.stack([np.linalg.norm(P[:, a] - P[:, b], axis=1) for a, b in PAIRS], 1)], 1).astype(np.float32)
+    """Small in-plane rotations, per-axis stretch and jitter: other people hold their hands
+    differently, and hold them a little higher or lower, nearer or further from the body."""
+    parts = [augment_shape(X[:, :63], rng)]
+    if args.extra:  # distances are recomputed from the augmented points
+        P = parts[0].reshape(len(X), 21, 3)
+        parts.append(np.stack([np.linalg.norm(P[:, a] - P[:, b], axis=1) for a, b in PAIRS], 1))
+    if args.location:
+        loc = X[:, -4:].copy()
+        shift = rng.normal(0, 0.15, (len(X), 2))
+        loc[:, :2] += shift
+        loc[:, 2:] += shift
+        parts.append(loc + rng.normal(0, 0.05, loc.shape))
+    return np.concatenate(parts, 1).astype(np.float32)
+
+
+def augment_shape(X, rng):
     P = X.reshape(len(X), 21, 3).copy()
     th = rng.uniform(-0.3, 0.3, len(X))
     c, s = np.cos(th)[:, None], np.sin(th)[:, None]
@@ -136,8 +163,9 @@ def write_fixture(model):
     Br = [np.array(l["b"], np.float32) for l in model["layers"]]
     picks = []
     for lab in sorted(labels):
-        picks += [f for v in videos[::97] for f in v["frames"] if f and f["label"] == lab][:3]
-    feats = np.array([letter_features(f["lms"], f["label"]) for f in picks], np.float32)
+        picks += [{**f, "pose": v["pose"][i] if args.location else None}
+                  for v in videos[::97] for i, f in enumerate(v["frames"]) if f and f["label"] == lab][:3]
+    feats = np.array([letter_features(f["lms"], f["label"], f["pose"]) for f in picks], np.float32)
     json.dump({"frames": picks, "features": feats.round(5).tolist(), "probs": predict(Wr, Br, feats).round(5).tolist()},
               open(args.fixture, "w"))
     print("wrote", args.fixture)
@@ -193,6 +221,7 @@ model = {
     "classes": classes,
     "mirror": MIRROR,
     "extra": args.extra,
+    "location": args.location,
     "layers": [
         {"rows": int(w.shape[0]), "cols": int(w.shape[1]), "w": [round(float(x), 5) for x in w.reshape(-1)], "b": [round(float(x), 5) for x in b]}
         for w, b in zip(W, B)

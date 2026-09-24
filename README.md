@@ -49,6 +49,9 @@ On the KArSL **test** split (details and method in `training/README.md`):
   signers). Most errors are letters sharing a hand shape (ي/ى/ئ, ت/ة, ج/ح, ز/ذ).
 - **Auto mode, word–letter–letter–word sentences with brief pauses:** 91% (letter model that
   never saw the signer). Spelling without pauses is better in Letters mode (78% vs 43%).
+- **Hand location matters:** moving the same movement to another sign's place drops the word
+  model from 96.8% to 62.5%, so where the hands are relative to the body is part of every
+  word it reads.
 - **Two hands:** 99.0% top-1 with both hands given to the model vs 97.0% with one (504 videos).
 
 The word model was trained on sign clips that start and end with the hands down, so it is best

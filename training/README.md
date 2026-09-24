@@ -18,6 +18,8 @@ data, and builds the assets the app ships.
 | `make_fake_camera.py` | A `.y4m` camera for the Playwright tests. |
 | `eval_video_mode.py` | Which MediaPipe speed-ups (tracking per part, pose/face every other frame) keep the word model's accuracy. |
 | `extract_letters.py` | Hand landmarks of every KArSL letter video, for the letter model. |
+| `eval_location.py` | How much the word model relies on where the hands are relative to the body. |
+| `extract_letters_pose.py` | Nose and shoulders for every letter video, for the letter model's location input. |
 | `eval_two_hands.py` | Whether to track one hand or two, and how to feed them to the word model. |
 | `train_letters.py` | Trains the per-frame letter model (`public/models/letters.json`), reports leave-one-signer-out accuracy, writes the parity fixture. |
 
@@ -66,6 +68,27 @@ every 4th sign, 15 fps):
 
 So the app detects hands on every frame and tracks pose and face. On devices below 18 fps
 pose and face are refreshed only every other frame (in sentences that costs 2-3 points, see below).
+
+## Hand location
+
+Where a sign is made (at the head, chest, a shoulder) is part of the sign. The word model sees
+it through the pose points: elbows and wrists relative to the left shoulder, scaled by
+shoulder width (hand points are relative to their own wrist). `eval_location.py` removes that
+information on 504 held-out videos:
+
+| Arm points given to the word model | Top-1 |
+| --- | --- |
+| As recorded | 96.8% |
+| Held at their average place (no arm movement) | 77.8% |
+| Same movement, moved to another sign's place | 62.5% |
+| None (hand shape and face only) | 27.8% |
+
+So location is a large part of what the word model reads. For letters it is not: adding the
+wrist's place relative to the shoulders and the nose to the letter model (`--location`, body
+points from `extract_letters_pose.py`) gave 76.7% vs 75.9% at 40 epochs but 76.1% vs 76.5% at
+60, i.e. within run-to-run noise. It would also need body tracking in Letters mode, which
+skips it to stay fast, so the shipped letter model reads the hand shape only. Its remaining
+confusions (ي/ى/ئ, ج/ح) differ by movement, which a one-frame model cannot see.
 
 ## Two hands
 
