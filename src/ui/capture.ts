@@ -7,6 +7,7 @@ import type { Guess } from '../recognition/topk';
 import { signById } from '../data/signs';
 import { t } from '../i18n';
 import { drawOverlay } from './overlay';
+import { FramingCoach, type FramingIssue } from '../recognition/framing';
 import { h, icon } from './dom';
 import type { Sentence } from './sentence';
 
@@ -36,6 +37,9 @@ export class Capture {
   private mode: SignMode = storedMode();
   private modeButtons: HTMLButtonElement[];
   private hint = h('p', { class: 'mode-hint' });
+  private tip = h('div', { class: 'framing-tip', role: 'status' });
+  private coach = new FramingCoach();
+  private issue: FramingIssue | null = null;
   private lastCommitted = -1; // not previewed again while it is still being held
 
   constructor(
@@ -52,6 +56,7 @@ export class Capture {
       this.video,
       this.canvas,
       this.live,
+      this.tip,
       h('div', { class: 'stage-bar' }, this.status, this.fpsEl),
     );
     this.el = h(
@@ -72,6 +77,7 @@ export class Capture {
           this.status.textContent = seen ? t().handSeen : t().noHand;
         }
         drawOverlay(this.canvas, raw, seen);
+        this.showFraming(this.coach.push(performance.now(), raw));
         this.fpsEl.textContent = `${Math.round(fps)} ${t().fps}`;
       },
       onLive: (g) => this.showLive(g),
@@ -91,6 +97,19 @@ export class Capture {
     this.setMode(this.mode);
     this.renderButton();
     this.status.textContent = t().cameraOff;
+  }
+
+  /** Tells the signer when a hand is cut off or they are too close for two-handed signs. */
+  private showFraming(issue: FramingIssue | null) {
+    if (issue === this.issue) return;
+    this.issue = issue;
+    this.stage.classList.toggle('framing-bad', !!issue);
+    if (!issue) {
+      this.tip.textContent = '';
+      return;
+    }
+    const upright = this.video.videoHeight > this.video.videoWidth;
+    this.tip.textContent = t().framing[issue] + (upright ? ` ${t().framingRotate}` : '');
   }
 
   private setMode(mode: SignMode) {
@@ -147,6 +166,8 @@ export class Capture {
     } else {
       this.status.textContent = t().cameraOff;
       this.canvas.getContext('2d')?.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.coach.reset();
+      this.showFraming(null);
       this.live.textContent = '';
       this.fpsEl.textContent = '';
     }

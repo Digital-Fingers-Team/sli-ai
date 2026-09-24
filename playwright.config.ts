@@ -1,7 +1,8 @@
 import { defineConfig } from '@playwright/test';
 
 // Fake cameras are KArSL test videos (training/make_fake_camera.py): one of words for the main
-// suite, one of fingerspelled letters for letters.spec.ts.
+// suite, one of fingerspelled letters for letters.spec.ts, and one framed too close for
+// framing.spec.ts.
 const camera = (file: string) => ({
   launchOptions: {
     args: [
@@ -26,8 +27,13 @@ export default defineConfig({
   projects: [
     {
       name: 'words',
-      testIgnore: /letters\.spec/,
+      testIgnore: /(letters|framing)\.spec/,
       use: camera(process.env.SLI_FAKE_CAMERA ?? 'tests/fixtures/camera.y4m'),
+    },
+    {
+      name: 'framing',
+      testMatch: /framing\.spec/,
+      use: camera(process.env.SLI_FRAMING_CAMERA ?? 'tests/fixtures/camera-close.y4m'),
     },
     {
       name: 'letters',

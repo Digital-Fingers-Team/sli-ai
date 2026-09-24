@@ -38,6 +38,8 @@ test('sign → text: recognises the signs from the camera', async ({ page }) => 
   const got = await words.allTextContents();
   const alts = await words.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.alts?.split('|') ?? []));
   console.log('recognised:', got.join(' | '), '— alternatives:', JSON.stringify(alts));
+  // KArSL framing is what the model expects: no framing warning.
+  await expect(page.locator('.framing-tip')).toBeEmpty();
   // The camera video loops and may start mid-loop, so any rotation of the sequence counts.
   // Each word must be right or one tap away (among the alternatives offered for it): on this
   // slow test machine near-identical signs such as طبيب/صيدلي can swap places between runs.

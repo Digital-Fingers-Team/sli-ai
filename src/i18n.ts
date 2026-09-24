@@ -15,6 +15,11 @@ const ar = {
   signTitle: 'أشِر أمام الكاميرا',
   signHint: 'أشِر أمام الكاميرا بيد واحدة أو بيدين؛ تظهر الترجمة وأنت تشير.',
   modeLabel: 'نوع الإشارة',
+  framing: {
+    handOut: 'يدك خارج الصورة: ابتعد قليلًا عن الكاميرا.',
+    tooClose: 'ابتعد قليلًا عن الكاميرا حتى تبقى يداك داخل الصورة.',
+  } as Record<string, string>,
+  framingRotate: 'أو أدِر الهاتف أفقيًا.',
   modes: { auto: 'تلقائي', words: 'كلمات', letters: 'حروف' } as Record<string, string>,
   modeHints: {
     auto: 'اخلط الكلمات والحروف: أشِر بالكلمة كالمعتاد، وللتهجئة اثبت على كل حرف لحظة بيد ساكنة.',
@@ -103,6 +108,11 @@ const en: Dict = {
   signTitle: 'Sign in front of the camera',
   signHint: 'Sign to the camera with one hand or both; the translation appears as you sign.',
   modeLabel: 'What are you signing?',
+  framing: {
+    handOut: 'Your hand is outside the picture: move back a little.',
+    tooClose: 'Move back a little so both hands stay in the picture.',
+  } as Record<string, string>,
+  framingRotate: 'Or turn the phone sideways.',
   modes: { auto: 'Auto', words: 'Words', letters: 'Letters' },
   modeHints: {
     auto: 'Mix words and letters: sign words as usual; to spell, hold each letter still for a moment.',

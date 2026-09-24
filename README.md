@@ -11,6 +11,9 @@ SLI translates **Arabic Sign Language ⇄ Arabic text ⇄ speech**, entirely in 
   letter and movement as a word, so a sentence can mix signed words and spelled names.
   Words and Letters modes restrict it to one kind.
 - **One or two hands.** Both hands are tracked; two-handed signs use both.
+- **Framing coach.** If a hand stays outside the picture while its elbow is in view, or the
+  signer is too close, the camera view says so (move back, or turn the phone sideways): the
+  model learned from signers filmed with room around them.
 - **Text or voice → sign.** Type or speak Arabic; each word is shown as a real signer video.
   Unknown words and names are fingerspelled with letter signs, and numbers are composed from
   number signs.
@@ -72,6 +75,7 @@ End-to-end tests drive real Chromium with KArSL videos as the camera:
 ```bash
 python training/make_fake_camera.py tests/fixtures/camera.y4m KARSL_DIR 01 290 497 --slow 4
 python training/make_fake_camera.py tests/fixtures/camera-letters.y4m KARSL_DIR 01 33 54 --slow 4
+python training/make_fake_camera.py tests/fixtures/camera-close.y4m KARSL_DIR 01 289 --slow 4 --crop 0.5,0.67
 npx playwright test
 ```
 

@@ -10,6 +10,7 @@
   --brand: #0e5a4e;
   --brand-ink: #ffffff;
   --live: #f2b632;
+  --warn: #d9480f;
   --live-ink: #2b1d00;
   --danger: #b3261e;
   --stage: #0b2420;
@@ -32,6 +33,8 @@
     --brand: #43b5a0;
     --brand-ink: #04201a;
     --live: #f5c451;
+  --warn: #ff8a50;
+    --warn: #ff8a50;
     --stage: #050f0d;
     color-scheme: dark;
   }
@@ -808,4 +811,27 @@ main {
   50% {
     opacity: 0.25;
   }
+}
+
+/* ---------- framing coach ---------- */
+.framing-tip {
+  position: absolute;
+  top: 3.2rem;
+  inset-inline: 0.75rem;
+  margin: auto;
+  width: fit-content;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-s);
+  background: var(--warn);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+}
+.framing-tip:empty {
+  display: none;
+}
+.camera-stage.framing-bad {
+  box-shadow: inset 0 0 0 4px var(--warn);
 }

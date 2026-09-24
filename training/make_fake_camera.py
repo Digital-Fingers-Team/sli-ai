@@ -4,6 +4,8 @@ leave the picture between signs, like a person lowering their hands.
 
 Usage: python make_fake_camera.py OUT.y4m KARSL_ALL_DIR SIGNER SIGN [SIGN ...]
        [--slow N]  repeat each frame N times (for slow software-rendered test browsers)
+       [--crop W,H] keep only this share of each frame (top-anchored), like a signer too close
+                    to the camera; for the framing-coach test
 """
 
 import argparse
@@ -20,6 +22,7 @@ ap.add_argument("signer")
 ap.add_argument("signs", nargs="+", type=int)
 ap.add_argument("--slow", type=int, default=1)
 ap.add_argument("--gap", type=float, default=1.5)
+ap.add_argument("--crop", help="W,H share of the frame to keep, e.g. 0.5,0.67")
 ap.add_argument("--ffmpeg", default="ffmpeg")
 args = ap.parse_args()
 
@@ -48,11 +51,18 @@ for n in args.signs:
 add(blank, int(args.gap * fps * args.slow))
 lines.append(f"file '{blank}'\n")
 
+if args.crop:
+    w, h = map(float, args.crop.split(","))
+    # No padding: a phone camera fills the whole picture, so a cut-off hand meets the real edge.
+    view = f"crop=iw*{w}:ih*{h}:iw*{(1 - w) / 2}:ih*{(1 - h) * 0.15},scale=-2:480,"
+else:
+    view = "scale=480:480,pad=640:480:80:0:color=0x3f9a8f,"
+
 lst = os.path.join(tmp, "list.txt")
 open(lst, "w").write("".join(lines))
 subprocess.run(
     [args.ffmpeg, "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst,
-     "-vf", "scale=480:480,pad=640:480:80:0:color=0x3f9a8f,fps=30,format=yuv420p", args.out],
+     "-vf", view + "fps=30,format=yuv420p", args.out],
     check=True,
 )
 print("wrote", args.out)

@@ -135,6 +135,21 @@ function startClassifier(base: string): Promise<(seq: Float32Array) => Promise<G
   });
 }
 
+/**
+ * Zooms the camera out as far as it goes, where the browser allows it: the wider the picture,
+ * the less often a hand leaves it (training/eval_framing.py).
+ */
+async function widestView(stream: MediaStream) {
+  const track = stream.getVideoTracks()[0];
+  const zoom = (track?.getCapabilities?.() as { zoom?: { min: number } } | undefined)?.zoom;
+  if (!zoom) return;
+  try {
+    await track.applyConstraints({ advanced: [{ zoom: zoom.min } as MediaTrackConstraintSet] });
+  } catch {
+    /* not supported for this camera */
+  }
+}
+
 /** Loads models once per page load; later callers reuse them. */
 export function loadModels(onProgress?: (step: string) => void) {
   progress = onProgress;
@@ -177,12 +192,13 @@ export class Engine {
       const [models, stream] = await Promise.all([
         loadModels((s) => this.events.onStatus?.('loading', s)),
         navigator.mediaDevices.getUserMedia({
-          video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } },
+          video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 }, aspectRatio: { ideal: 4 / 3 } },
           audio: false,
         }),
       ]);
       this.models = models;
       this.stream = stream;
+      await widestView(stream);
       this.video.srcObject = stream;
       this.video.muted = true;
       this.video.playsInline = true;
