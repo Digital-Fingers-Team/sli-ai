@@ -25,6 +25,7 @@ ap.add_argument("--mirror", choices=["none", "label"], default="none",
 ap.add_argument("--extra", action="store_true", help="add fingertip-to-fingertip and fingertip-to-wrist distances")
 ap.add_argument("--quick", action="store_true", help="evaluation only, do not write the model")
 ap.add_argument("--fixture-only", action="store_true", help="only rewrite the parity fixture from the model in --out")
+ap.add_argument("--exclude", help="train without this signer and write only the model (for tests/replay with SLI_SIGNER)")
 ap.add_argument("--fixture", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tests", "fixtures", "letters-parity.json"))
 args = ap.parse_args()
 
@@ -165,6 +166,9 @@ if args.fixture_only:
 rng = np.random.default_rng(0)
 signers = sorted({v["signer"] for v in videos})
 report = {}
+if args.exclude:
+    videos = [v for v in videos if v["signer"] != args.exclude]
+    signers = []
 for held in signers:
     Xtr, ytr, _ = samples([v for v in videos if v["signer"] != held])
     test_videos = [v for v in videos if v["signer"] == held]
@@ -178,7 +182,8 @@ for held in signers:
     report[held] = {"frames": round(frame_acc, 3), "videos": round(float(np.mean(vid_ok)), 3), "confusions": confusions}
     print("held-out signer", held, report[held], flush=True)
 
-print("mean frame acc", np.mean([r["frames"] for r in report.values()]), "video acc", np.mean([r["videos"] for r in report.values()]))
+if report:
+    print("mean frame acc", np.mean([r["frames"] for r in report.values()]), "video acc", np.mean([r["videos"] for r in report.values()]))
 if args.quick:
     raise SystemExit
 
@@ -196,5 +201,6 @@ model = {
 }
 json.dump(model, open(args.out, "w"), separators=(",", ":"))
 print("wrote", args.out, os.path.getsize(args.out) // 1024, "KB")
-write_fixture(model)
-write_metrics(report)
+if not args.exclude:
+    write_fixture(model)
+    write_metrics(report)

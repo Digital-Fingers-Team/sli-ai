@@ -1,6 +1,7 @@
 // Turns per-frame letter probabilities into typed letters. A letter is typed once the same
-// shape has been held for holdMs; typing it again needs the hand to leave that shape first
-// (or drop out of view). Lowering the hands for gapMs ends the word.
+// shape has been held (still, when the caller tracks motion) for holdMs; typing it again needs
+// the hand to leave that shape first (or drop out of view). Lowering the hands for gapMs ends
+// the word.
 
 import type { Commit, DecoderEvents } from './decoder';
 import type { Guess } from './topk';
@@ -44,7 +45,8 @@ export class Speller {
     this.inWord = false;
   }
 
-  push(t: number, probs: Float32Array | null) {
+  /** `still` false (the hand is moving) restarts the hold: letters are held, words move. */
+  push(t: number, probs: Float32Array | null, still = true) {
     if (!probs) {
       this.avg = null;
       this.candidate = -1;
@@ -69,7 +71,7 @@ export class Speller {
     this.events.onLive?.(guesses, t);
 
     if (this.last >= 0 && avg[this.last] < this.opts.releaseP) this.released = true;
-    if (avg[top] < this.opts.minP) {
+    if (avg[top] < this.opts.minP || !still) {
       this.candidate = -1;
       return;
     }

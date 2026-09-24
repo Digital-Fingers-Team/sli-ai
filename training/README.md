@@ -18,6 +18,7 @@ data, and builds the assets the app ships.
 | `make_fake_camera.py` | A `.y4m` camera for the Playwright tests. |
 | `eval_video_mode.py` | Which MediaPipe speed-ups (tracking per part, pose/face every other frame) keep the word model's accuracy. |
 | `extract_letters.py` | Hand landmarks of every KArSL letter video, for the letter model. |
+| `eval_two_hands.py` | Whether to track one hand or two, and how to feed them to the word model. |
 | `train_letters.py` | Trains the per-frame letter model (`public/models/letters.json`), reports leave-one-signer-out accuracy, writes the parity fixture. |
 
 Setup: Python 3.9+, `pip install mediapipe==0.10.14 onnxruntime opencv-python-headless numpy py7zr`.
@@ -65,6 +66,23 @@ every 4th sign, 15 fps):
 
 So the app detects hands on every frame and tracks pose and face. On devices below 18 fps
 pose and face are refreshed only every other frame (in sentences that costs 2-3 points, see below).
+
+## Two hands
+
+The word model was trained with one hand per frame (`num_hands=1` in its extractor), but its
+input has a right- and a left-hand slot. `eval_two_hands.py` detects two hands on 504 held-out
+videos (every 3rd sign, all three signers; 316 of them show two hands at some point):
+
+| Hands given to the model | Top-1 |
+| --- | --- |
+| One (as in training) | 97.0% |
+| Both | **99.0%** |
+| One of two: the first detected | 97.0% |
+| One of two: the one that moved most | 98.2% |
+| One of two: the raised one | 93.3% |
+
+So the app tracks two hands and gives the word model both. For letters (one hand) it uses the
+raised hand, which is the spelling hand when the other rests.
 
 ## Sentences through the app's pipeline
 
@@ -116,7 +134,31 @@ never saw:
 | 03 | 74.0% | 77.3% |
 | **Mean** | **74.0%** | **76.5%** |
 
-Variants tried (videos): without mirroring 74.9%, without fingertip distances 73.4%, without either 72.1%. Most errors are
+Variants tried (videos): without mirroring 74.9%, without fingertip distances 73.4%, without either 72.1%.
+
+## Words and letters together (Auto mode)
+
+`src/recognition/interpreter.ts` runs the word decoder and the speller together. Hand speed
+separates them well: holding a letter, the hand moves 0.27 palm lengths per second (median),
+signing a word 4.9 (signer 01, 15 fps), so the speller only types while the hand is below 1.0.
+Words have still moments too, so a letter is also refused while the hand is low (in the lap)
+or the word model, which also knows the 39 letter signs, confidently sees a non-letter word.
+
+Replay on signer 01 only, with a letter model trained without signer 01
+(`train_letters.py --exclude 01`), 60 sentences each, 15 fps, words right (LCS):
+
+| Sentences | Words mode | Letters mode | Auto, no guards | Auto |
+| --- | --- | --- | --- | --- |
+| 3 signs, pauses | 90% | | 83% | 89% |
+| 3 signs, no pauses | 59% | | 57% | 61% |
+| word, letter, letter, word, pauses | 95% | | 86% | 91% |
+| word, letter, letter, word, no pauses | 40% | | 50% | 47% |
+| 3 letters, pauses | | 80% | 94% | 94% |
+| 3 letters, no pauses | | 78% | 59% | 43% |
+
+The guards remove the stray letters Auto added inside word sentences, at the cost of spelling
+without pauses, where Letters mode stays the better choice. A "spelling session" (after a
+typed letter, only very confident words until the hands drop) was tried and made it worse. Most errors are
 letters that share a hand shape and differ by movement or a hamza: ي/ى/ئ, ن/ئـ, أ/ئـ, ت/ة,
 ا/آ, ج/ح, ز/ذ, ر/د. The shipped model is trained on all three signers.
 

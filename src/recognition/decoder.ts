@@ -220,6 +220,19 @@ export class Decoder {
     this.ended = 0;
   }
 
+  /**
+   * Another recogniser (the speller) turned the frames up to `t` into sign `id`: the next
+   * word starts after them, and `id` is not repeated from their leftovers.
+   */
+  consume(t: number, id: number) {
+    this.windowStart = Math.max(this.windowStart, t);
+    this.lastCommitted = id;
+    this.peak = null;
+    this.ended = 0;
+    this.runCount = 0;
+    this.runId = -1;
+  }
+
   private commit(guesses: Guess[], t: number, nextStart: number) {
     const [top, ...alternatives] = guesses;
     this.lastCommitted = top.id;

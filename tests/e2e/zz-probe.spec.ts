@@ -4,7 +4,7 @@ import { writeFileSync } from 'node:fs';
 
 test('probe', async ({ page }) => {
   test.skip(!process.env.SLI_PROBE, 'diagnostic only');
-  await page.goto('/?delegate=CPU&debug#/sign');
+  await page.goto(`/?delegate=CPU&debug&timescale=4${process.env.SLI_URL_EXTRA ? '&' + process.env.SLI_URL_EXTRA : ''}#/sign`);
   await page.getByRole('button', { name: 'تشغيل الكاميرا' }).click();
   await page.waitForFunction(() => document.querySelector('.fps')?.textContent, null, { timeout: 120_000 });
   await page.waitForTimeout(Number(process.env.SLI_PROBE_MS ?? 20000));

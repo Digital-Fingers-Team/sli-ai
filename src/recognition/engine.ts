@@ -1,12 +1,13 @@
-// Camera -> landmarks (worker) -> words decoder or letter speller. One engine per page that
-// signs; the models behind it are loaded once and shared.
+// Camera -> landmarks (worker) -> Interpreter (words, letters or both). One engine per page
+// that signs; the models behind it are loaded once and shared.
 //
 // The main thread only grabs frames and draws. MediaPipe runs in one worker and the word model
 // in another, so neither the camera view nor the landmark rate waits on a classification.
 
-import { frameFeatures, type RawFrame } from './features';
-import { Decoder, DEFAULT_OPTIONS, type DecoderEvents, type DecoderOptions } from './decoder';
-import { DEFAULT_SPELLER, Speller, type SpellerOptions } from './speller';
+import type { RawFrame } from './features';
+import { DEFAULT_OPTIONS, type DecoderEvents, type DecoderOptions } from './decoder';
+import { DEFAULT_SPELLER, type SpellerOptions } from './speller';
+import { DEFAULT_INTERPRETER, Interpreter, type InterpreterOptions, type SignMode } from './interpreter';
 import { LetterClassifier } from './letters';
 import type { Guess } from './topk';
 import type { LandmarksReply, LandmarksRequest } from './landmarks.worker';
@@ -18,7 +19,7 @@ export interface EngineEvents extends DecoderEvents {
 }
 
 export type EngineStatus = 'loading' | 'ready' | 'running' | 'stopped' | 'error';
-export type SignMode = 'words' | 'letters';
+export type { SignMode } from './interpreter';
 
 const params = new URLSearchParams(location.search);
 
@@ -51,6 +52,11 @@ function spellerOptions(): SpellerOptions {
   return { ...o, holdMs: o.holdMs * timescale, gapMs: o.gapMs * timescale };
 }
 
+function interpreterOptions(): InterpreterOptions {
+  const o = DEFAULT_INTERPRETER;
+  return { ...o, decoder: decoderOptions(), speller: spellerOptions(), stillSpeed: o.stillSpeed / timescale };
+}
+
 // Pose and face move much less than the hands. On a device that cannot keep up (below
 // SLOW_FPS) they are refreshed every other frame and reused in between: in the sentence replay
 // that costs 2-3 points of word accuracy, less than losing frames does. Skipping them raises
@@ -77,9 +83,10 @@ function startLandmarks(base: string): Promise<Worker> {
     options: {
       base,
       delegate: delegate === 'CPU' || delegate === 'GPU' ? delegate : undefined,
-      // ?hands=video / ?body=image override the per-part modes for comparisons.
-      handsMode: params.get('hands') === 'video' ? 'VIDEO' : 'IMAGE',
+      // ?handsMode=video / ?body=image override the per-part modes, ?hands=1 tracks one hand.
+      handsMode: params.get('handsMode') === 'video' ? 'VIDEO' : 'IMAGE',
       bodyMode: params.get('body') === 'image' ? 'IMAGE' : 'VIDEO',
+      numHands: params.get('hands') === '1' ? 1 : 2,
     },
   };
   worker.postMessage(request);
@@ -144,15 +151,14 @@ export class Engine {
   private stream: MediaStream | null = null;
   private running = false;
   private models: Models | null = null;
-  private decoder: Decoder | null = null;
-  private speller: Speller | null = null;
+  private interpreter: Interpreter | null = null;
   private inflight = false;
   private frameWaiting = false;
   private frameNo = 0;
   private bodyEvery = 1;
   private lastResultAt = -1;
   private fps = 0;
-  private mode: SignMode = 'words';
+  private mode: SignMode = 'auto';
 
   constructor(
     private video: HTMLVideoElement,
@@ -162,8 +168,7 @@ export class Engine {
   setMode(mode: SignMode) {
     this.mode = mode;
     this.frameNo = 0;
-    this.decoder?.reset();
-    this.speller?.reset();
+    this.interpreter?.setMode(mode);
   }
 
   async start() {
@@ -182,8 +187,7 @@ export class Engine {
       this.video.muted = true;
       this.video.playsInline = true;
       await this.video.play();
-      this.decoder = new Decoder(models.classify, this.events, decoderOptions());
-      this.speller = new Speller(models.letters.classes, this.events, spellerOptions());
+      this.interpreter = new Interpreter(models.classify, models.letters, this.events, this.mode, interpreterOptions());
       models.landmarks.addEventListener('message', this.onResult);
       this.running = true;
       this.inflight = false;
@@ -223,7 +227,8 @@ export class Engine {
         // Letters are hand shapes only; words need the body and face too.
         if (this.fps > 0 && this.fps < SLOW_FPS) this.bodyEvery = 2;
         else if (this.fps > FAST_FPS) this.bodyEvery = 1;
-        const body = this.mode === 'words' && this.frameNo++ % (BODY_EVERY || this.bodyEvery) === 0;
+        const needsBody = this.interpreter?.needsBody ?? this.mode !== 'letters';
+        const body = needsBody && this.frameNo++ % (BODY_EVERY || this.bodyEvery) === 0;
         const request: LandmarksRequest = { type: 'frame', bitmap, t, body, face: body };
         worker.postMessage(request, [bitmap]);
       },
@@ -248,15 +253,12 @@ export class Engine {
     const { raw, t } = m;
     if (debugFrames) debugFrames.push({ t, raw, ms: m.ms });
     this.events.onFrame?.(raw, this.fps);
-    const hand = raw.hands[0];
-    if (this.mode === 'letters') this.speller?.push(t, hand ? this.models!.letters.predict(hand) : null);
     // Not awaited: the decoder skips steps while a classification is still running.
-    else void this.decoder?.push(t, frameFeatures(raw), !!hand);
+    void this.interpreter?.push(t, raw);
   };
 
   resetSentence() {
-    this.decoder?.reset();
-    this.speller?.reset();
+    this.interpreter?.reset();
   }
 
   stop() {

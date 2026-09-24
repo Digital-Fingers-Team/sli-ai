@@ -6,6 +6,8 @@ import { expect, test, type Page } from '@playwright/test';
 // timings are stretched by the same factor.
 const expected = (process.env.SLI_EXPECT ?? 'السلام عليكم,طبيب').split(',');
 const timescale = process.env.SLI_TIMESCALE ?? '4';
+// SLI_URL_EXTRA adds query parameters, e.g. hands=1, to compare pipeline settings.
+const extra = process.env.SLI_URL_EXTRA ? `&${process.env.SLI_URL_EXTRA}` : '';
 
 function collectErrors(page: Page) {
   const errors: string[] = [];
@@ -17,12 +19,20 @@ function collectErrors(page: Page) {
 
 test('sign → text: recognises the signs from the camera', async ({ page }) => {
   const errors = collectErrors(page);
+
   // Test browsers have no GPU; emulated WebGL is far slower than the CPU path.
-  await page.goto(`/?delegate=CPU&timescale=${timescale}#/sign`);
+  await page.goto(`/?delegate=CPU&debug&timescale=${timescale}${extra}#/sign`);
+  // The default mode, auto, must not turn still moments of words into letters.
+  await expect(page.getByRole('button', { name: 'تلقائي' })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'تشغيل الكاميرا' }).click();
   await expect(page.getByRole('button', { name: 'إيقاف الكاميرا' })).toBeVisible({ timeout: 120_000 });
 
   // The faint live preview (.pending) is not a recognised word yet.
+  // The word model needs pose and face as well as hands; losing them once made every sign
+  // come out as the same word.
+  await expect
+    .poll(() => page.evaluate(() => (window as unknown as { __sliFrames: { raw: { pose: unknown; face: unknown } }[] }).__sliFrames.filter((f) => f.raw.pose && f.raw.face).length), { timeout: 120_000 })
+    .toBeGreaterThan(10);
   const words = page.locator('.sentence-words .word:not(.pending)');
   await expect(words).toHaveCount(expected.length, { timeout: 180_000 });
   const got = await words.allTextContents();

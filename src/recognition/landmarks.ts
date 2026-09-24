@@ -19,9 +19,12 @@ export interface LandmarkOptions {
   // not (training/eval_video_mode.py), so the defaults are IMAGE hands and VIDEO body.
   handsMode: Mode;
   bodyMode: Mode;
+  // Two-handed signs need both hands. The word model was trained with one hand per frame, but
+  // its input has a slot for each and giving it both costs nothing (training/eval_two_hands.py).
+  numHands: 1 | 2;
 }
 
-/** Pose + face + hand landmarkers, configured like the training extractor (1 face, 1 hand). */
+/** Pose + face + hand landmarkers (1 face, up to 2 hands). */
 export class Landmarks {
   private lastBody: Pick<RawFrame, 'pose' | 'face'> = { pose: null, face: null };
 
@@ -46,7 +49,7 @@ export class Landmarks {
       onProgress?.('face');
       const face = await FaceLandmarker.createFromOptions(fileset, { ...opts('face', o.bodyMode), numFaces: 1 });
       onProgress?.('hand');
-      const hands = await HandLandmarker.createFromOptions(fileset, { ...opts('hand', o.handsMode), numHands: 1 });
+      const hands = await HandLandmarker.createFromOptions(fileset, { ...opts('hand', o.handsMode), numHands: o.numHands });
       return new Landmarks(pose, face, hands, delegate, o.handsMode, o.bodyMode);
     };
     if (o.delegate) return make(o.delegate);

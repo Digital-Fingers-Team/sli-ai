@@ -5,14 +5,14 @@ import { expect, test } from '@playwright/test';
 const expected = (process.env.SLI_LETTERS ?? 'ب,ل').split(',');
 const timescale = process.env.SLI_TIMESCALE ?? '4';
 
-test('letters mode: fingerspelled letters are typed live', async ({ page }) => {
+for (const mode of ['حروف', 'تلقائي']) test(`${mode}: fingerspelled letters are typed live`, async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(String(e)));
   page.on('console', (m) => m.type() === 'error' && !m.text().startsWith('INFO:') && errors.push(m.text()));
 
   await page.goto(`/?delegate=CPU&timescale=${timescale}#/sign`);
-  await page.getByRole('button', { name: 'حروف' }).click();
-  await expect(page.getByRole('button', { name: 'حروف' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: mode }).click();
+  await expect(page.getByRole('button', { name: mode })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'تشغيل الكاميرا' }).click();
   await expect(page.getByRole('button', { name: 'إيقاف الكاميرا' })).toBeVisible({ timeout: 120_000 });
 

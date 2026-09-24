@@ -5,8 +5,12 @@ SLI translates **Arabic Sign Language ⇄ Arabic text ⇄ speech**, entirely in 
 - **Sign → text → speech.** Sign in front of the camera; the word appears while you sign and
   builds a sentence that can be spoken aloud in Arabic. Each word can be swapped for the
   model's next-best guesses.
-- **Live fingerspelling.** In Letters mode each hand shape is read frame by frame, so letters
-  are typed one after another without lowering the hand.
+- **Live fingerspelling.** Each hand shape is read frame by frame, so letters are typed one
+  after another without lowering the hand.
+- **Words and letters together.** In Auto mode (the default) a still, raised hand is read as a
+  letter and movement as a word, so a sentence can mix signed words and spelled names.
+  Words and Letters modes restrict it to one kind.
+- **One or two hands.** Both hands are tracked; two-handed signs use both.
 - **Text or voice → sign.** Type or speak Arabic; each word is shown as a real signer video.
   Unknown words and names are fingerspelled with letter signs, and numbers are composed from
   number signs.
@@ -26,6 +30,7 @@ works offline.
 | Segmenting | Commits a sign when the next one takes over or the hands drop for 300 ms | `src/recognition/decoder.ts` |
 | Classifying | Frames resampled to 50 and classified by an ST-Transformer over 502 KArSL signs, in its own worker | `src/recognition/classifier*.ts` |
 | Letters | A per-frame hand-shape model (trained here on KArSL's letter videos) and a hold-to-type speller | `src/recognition/letters.ts`, `speller.ts` |
+| Auto mode | Runs both; letters only while the hand is still and raised and the word model does not see a word | `src/recognition/interpreter.ts` |
 | Text → sign | Arabic normalisation, phrase matching, light stemming, numbers, fingerspelling | `src/translate/` |
 
 The recognition model is the MIT-licensed
@@ -42,6 +47,9 @@ On the KArSL **test** split (details and method in `training/README.md`):
   between signs, 54% when signing straight through without lowering the hands.
 - **Letters, on a signer the model never saw:** 76.5% (leave-one-signer-out over KArSL's three
   signers). Most errors are letters sharing a hand shape (ي/ى/ئ, ت/ة, ج/ح, ز/ذ).
+- **Auto mode, word–letter–letter–word sentences with brief pauses:** 91% (letter model that
+  never saw the signer). Spelling without pauses is better in Letters mode (78% vs 43%).
+- **Two hands:** 99.0% top-1 with both hands given to the model vs 97.0% with one (504 videos).
 
 The word model was trained on sign clips that start and end with the hands down, so it is best
 with a brief pause between signs. Its three test signers also appear in its training data, so
@@ -65,7 +73,7 @@ npx playwright test
 ```
 
 `?delegate=CPU` in the URL forces MediaPipe onto the CPU (for devices with broken WebGL),
-`?hands=video` / `?body=image` change the per-part tracking modes, `?bodyEvery=N` fixes how
+`?handsMode=video` / `?body=image` change the per-part tracking modes, `?hands=1` tracks one hand, `?bodyEvery=N` fixes how
 often pose and face are refreshed, and `?debug` keeps raw landmarks on `window.__sliFrames`.
 
 ## Credits

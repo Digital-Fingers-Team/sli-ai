@@ -1,5 +1,5 @@
-// Camera stage + skeleton overlay + live guess, feeding a Sentence. Two modes: words (the
-// sequence model) and letters (the per-frame hand-shape model, for live fingerspelling).
+// Camera stage + skeleton overlay + live guess, feeding a Sentence. Modes: auto (words and
+// spelled letters mixed), words only, letters only (see recognition/interpreter.ts).
 
 import { Engine, type EngineStatus, type SignMode } from '../recognition/engine';
 import type { Commit } from '../recognition/decoder';
@@ -10,13 +10,14 @@ import { drawOverlay } from './overlay';
 import { h, icon } from './dom';
 import type { Sentence } from './sentence';
 
-const MODES: SignMode[] = ['words', 'letters'];
+const MODES: SignMode[] = ['auto', 'words', 'letters'];
 
 function storedMode(): SignMode {
   try {
-    return localStorage.getItem('sli-mode') === 'letters' ? 'letters' : 'words';
+    const m = localStorage.getItem('sli-mode') as SignMode | null;
+    return m && MODES.includes(m) ? m : 'auto';
   } catch {
-    return 'words';
+    return 'auto';
   }
 }
 
@@ -111,7 +112,8 @@ export class Capture {
   private showLive(guesses: Guess[]) {
     const top = guesses[0];
     // Words show once the model leans one way; letters are only offered when fairly sure.
-    const shown = top.id !== this.lastCommitted && top.p >= (this.mode === 'letters' ? 0.45 : 0.3);
+    const letter = signById(top.id).cat === 'letters';
+    const shown = top.id !== this.lastCommitted && top.p >= (letter ? 0.45 : 0.3);
     if (!shown && this.live.classList.contains('committed')) return;
     this.sentence.setPending(shown ? top.id : null);
     this.live.textContent = shown ? signById(top.id).ar : '';
