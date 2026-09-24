@@ -1,7 +1,17 @@
 import { defineConfig } from '@playwright/test';
 
-// The fake camera is a KArSL test video (see training/make_fake_camera.py and tests/e2e/README).
-const fakeCamera = process.env.SLI_FAKE_CAMERA ?? 'tests/fixtures/camera.y4m';
+// Fake cameras are KArSL test videos (training/make_fake_camera.py): one of words for the main
+// suite, one of fingerspelled letters for letters.spec.ts.
+const camera = (file: string) => ({
+  launchOptions: {
+    args: [
+      '--use-fake-ui-for-media-stream',
+      '--use-fake-device-for-media-stream',
+      `--use-file-for-fake-video-capture=${file}`,
+      '--enable-unsafe-swiftshader',
+    ],
+  },
+});
 
 export default defineConfig({
   testDir: 'tests/e2e',
@@ -12,15 +22,19 @@ export default defineConfig({
     baseURL: 'http://localhost:4173',
     locale: 'ar-EG',
     permissions: ['camera'],
-    launchOptions: {
-      args: [
-        '--use-fake-ui-for-media-stream',
-        '--use-fake-device-for-media-stream',
-        `--use-file-for-fake-video-capture=${fakeCamera}`,
-        '--enable-unsafe-swiftshader',
-      ],
-    },
   },
+  projects: [
+    {
+      name: 'words',
+      testIgnore: /letters\.spec/,
+      use: camera(process.env.SLI_FAKE_CAMERA ?? 'tests/fixtures/camera.y4m'),
+    },
+    {
+      name: 'letters',
+      testMatch: /letters\.spec/,
+      use: camera(process.env.SLI_LETTERS_CAMERA ?? 'tests/fixtures/camera-letters.y4m'),
+    },
+  ],
   webServer: {
     command: 'npx vite preview --port 4173 --strictPort',
     url: 'http://localhost:4173',

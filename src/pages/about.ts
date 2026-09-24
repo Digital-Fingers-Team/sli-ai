@@ -9,15 +9,19 @@ const copy = {
     how: 'كيف يعمل',
     steps: [
       'تحدد MediaPipe نقاط الجسم والوجه واليد في كل إطار من الكاميرا، على جهازك.',
-      'يقرأ نموذج ST-Transformer حركة هذه النقاط عبر الزمن ويختار واحدة من 502 إشارة: الأرقام والحروف والكلمات.',
-      'تُثبَّت الكلمة عند إنزال اليدين، أو مبكرًا إذا ثبت النموذج على الإجابة نفسها بثقة عالية نحو ثانية، ثم تُنطق بالصوت العربي في المتصفح.',
+      'في وضع «كلمات» يقرأ نموذج ST-Transformer حركة هذه النقاط عبر الزمن ويختار واحدة من 502 إشارة. في وضع «حروف» يقرأ نموذج أصغر شكل اليد في كل إطار، فيظهر الحرف واليد ما زالت مرفوعة.',
+      'تظهر الكلمة باهتة وأنت تشير، وتُثبَّت حين تنتقل إلى الإشارة التالية أو تُنزل يديك، ثم يمكن نطق الجملة بالصوت العربي في المتصفح.',
       'في الاتجاه المعاكس، يُطابق النص مع القاموس (مع تجاهل التشكيل واختلاف الهمزات والبادئات مثل «ال» و«و»)، وتُعرض إشارة مصوّرة لكل كلمة، وتُهجّى الكلمات غير المعروفة بالحروف.',
     ],
     accuracy: 'الدقة المقيسة',
     accuracyText: (m: typeof metrics) =>
       `اختُبر النموذج على ${m.videos} فيديو من قسم الاختبار في KArSL (${m.signers} مؤشرين، فيديو لكل إشارة). أصاب في المحاولة الأولى ${pct(m.top1)}، وكانت الإجابة الصحيحة ضمن أول خمسة اقتراحات ${pct(m.top5)}.`,
+    sentencesText:
+      'في جمل من ثلاث إشارات بمعدل 15 إطارًا في الثانية: يتعرف على نحو 93% من الكلمات إذا توقفت لحظة بين الإشارات، ونحو 54% إذا أشرت دون توقف؛ لذلك يساعد التوقف القصير كثيرًا.',
+    lettersText: (m: typeof metrics) =>
+      `نموذج الحروف اختُبر على مؤشر لم يره أثناء التدريب (دُرّب على الاثنين الآخرين، وكُرر ذلك للثلاثة): أصاب ${pct(m.letters.videos)} من الحروف. أكثر ما يلتبس الحروف المتشابهة في الشكل ولا تختلف إلا بالحركة أو الهمزة، مثل ي/ى/ئ وت/ة وج/ح؛ اضغط على الحرف لاختيار البديل.`,
     caveat:
-      'هؤلاء المؤشرون أنفسهم ظهروا في بيانات التدريب، لذا ستكون الدقة مع أشخاص جدد أقل. أفضل النتائج: إضاءة جيدة، الجزء العلوي من الجسم كاملًا داخل الصورة، وأداء الإشارة كما في القاموس.',
+      'مؤشرو اختبار نموذج الكلمات ظهروا أيضًا في بيانات تدريبه، لذا ستكون دقته مع أشخاص جدد أقل. أفضل النتائج: إضاءة جيدة، الجزء العلوي من الجسم كاملًا داخل الصورة، وأداء الإشارة كما في القاموس.',
     language: 'اللغة',
     languageText:
       'يعتمد SLI لغة الإشارة العربية الموحّدة كما سُجّلت في قاعدة بيانات KArSL. قد تختلف بعض إشارات الكلمات عن اللهجات المحلية مثل لغة الإشارة المصرية.',
@@ -28,15 +32,19 @@ const copy = {
     how: 'How it works',
     steps: [
       'MediaPipe finds body, face and hand points in each camera frame, on your device.',
-      'An ST-Transformer model reads how those points move over time and picks one of 502 signs: numbers, letters and words.',
-      'A word is committed when the hands drop, or earlier if the model stays confident in the same answer for about a second; it is then spoken with the browser’s Arabic voice.',
+      'In Words mode an ST-Transformer reads how those points move over time and picks one of 502 signs. In Letters mode a smaller model reads the hand shape in every frame, so a letter appears while the hand is still up.',
+      'A word shows faintly while you sign and is confirmed when you move on to the next sign or lower your hands; the sentence can then be spoken with the browser’s Arabic voice.',
       'The other way round, text is matched against the dictionary (ignoring diacritics, hamza spellings and prefixes like ال and و), each word is shown as a recorded sign, and unknown words are fingerspelled.',
     ],
     accuracy: 'Measured accuracy',
     accuracyText: (m: typeof metrics) =>
       `Tested on ${m.videos} videos from the KArSL test split (${m.signers} signers, one video per sign). The first guess was right ${pct(m.top1)} of the time, and the right answer was in the top five ${pct(m.top5)} of the time.`,
+    sentencesText:
+      'In three-sign sentences at 15 frames per second, about 93% of words are recognised with a brief pause between signs and about 54% when signing straight through, so a short pause helps a lot.',
+    lettersText: (m: typeof metrics) =>
+      `The letter model was tested on a signer it never saw (trained on the other two, repeated for all three): it got ${pct(m.letters.videos)} of letters right. The usual mix-ups are letters with the same hand shape that differ only by movement or a hamza, such as ي/ى/ئ, ت/ة and ج/ح; tap a letter to pick the alternative.`,
     caveat:
-      'The same signers appear in the training data, so accuracy for new people will be lower. Best results: good light, your whole upper body in frame, and signs performed as in the dictionary.',
+      'The word model’s test signers also appear in its training data, so accuracy for new people will be lower. Best results: good light, your whole upper body in frame, and signs performed as in the dictionary.',
     language: 'Language',
     languageText:
       'SLI uses Unified Arabic Sign Language as recorded in the KArSL database. Some word signs may differ from local variants such as Egyptian Sign Language.',
@@ -57,6 +65,8 @@ export function mountAbout(root: HTMLElement) {
       h('ol', {}, ...c.steps.map((s) => h('li', {}, s))),
       h('h2', {}, c.accuracy),
       h('p', {}, c.accuracyText(metrics)),
+      h('p', {}, c.sentencesText),
+      h('p', {}, c.lettersText(metrics)),
       h('p', { class: 'hint' }, c.caveat),
       h('h2', {}, c.language),
       h('p', {}, c.languageText),

@@ -10,20 +10,22 @@ import { h } from './dom';
 interface Token {
   id: number;
   alternatives: Guess[];
+  endsWord?: boolean; // a spelled word ends here (the hands were lowered)
 }
 
 const isLetter = (id: number) => signById(id).cat === 'letters';
+const joinsPrevious = (id: number, prev: Token | undefined) => isLetter(id) && !!prev && isLetter(prev.id) && !prev.endsWord;
 
-/** Text of a token list: letters run together, everything else is space-separated. */
-export function sentenceText(ids: number[]): string {
+/** Text of a token list: spelled letters run together, everything else is space-separated. */
+export function sentenceText(tokens: { id: number; endsWord?: boolean }[]): string {
   let out = '';
-  let prevLetter = false;
-  for (const id of ids) {
-    const s = signById(id);
+  let joinNext = false;
+  for (const tk of tokens) {
+    const s = signById(tk.id);
     const letter = s.cat === 'letters';
     const text = letter ? s.ar.replace('ـ', '') : s.ar;
-    out += (out && !(letter && prevLetter) ? ' ' : '') + text;
-    prevLetter = letter;
+    out += (out && !(letter && joinNext) ? ' ' : '') + text;
+    joinNext = letter && !tk.endsWord;
   }
   return out;
 }
@@ -33,6 +35,7 @@ export class Sentence {
   private tokens: Token[] = [];
   private list = h('div', { class: 'sentence-words', 'aria-live': 'polite' });
   private menu: HTMLElement | null = null;
+  private pending = h('span', { class: 'word pending', 'aria-hidden': 'true' });
 
   constructor(private onChange: (text: string) => void = () => {}) {
     this.el = h('div', { class: 'sentence' }, this.list);
@@ -42,6 +45,30 @@ export class Sentence {
   add(c: Commit) {
     this.tokens.push({ id: c.id, alternatives: c.alternatives });
     this.render();
+  }
+
+  /** What the model sees right now, shown faintly after the sentence until it is committed. */
+  setPending(id: number | null) {
+    if (id === null) {
+      this.pending.remove();
+      return;
+    }
+    const joined = joinsPrevious(id, this.tokens[this.tokens.length - 1]);
+    this.pending.className = `word pending${isLetter(id) ? ' letter' : ''}${joined ? ' joined' : ''}`;
+    this.pending.textContent = signById(id).ar;
+    if (!this.pending.isConnected) {
+      this.list.querySelector('.empty')?.remove();
+      this.list.append(this.pending);
+    }
+  }
+
+  /** Ends the spelled word in progress, so the next letters start a new word. */
+  endWord() {
+    const last = this.tokens[this.tokens.length - 1];
+    if (last && isLetter(last.id) && !last.endsWord) {
+      last.endsWord = true;
+      this.render();
+    }
   }
 
   undo() {
@@ -55,7 +82,7 @@ export class Sentence {
   }
 
   text() {
-    return sentenceText(this.tokens.map((tk) => tk.id));
+    return sentenceText(this.tokens);
   }
 
   get length() {
@@ -117,7 +144,7 @@ export class Sentence {
       this.list.replaceChildren(
         ...this.tokens.map((tk, i) => {
           const letter = isLetter(tk.id);
-          const joined = letter && i > 0 && isLetter(this.tokens[i - 1].id);
+          const joined = joinsPrevious(tk.id, this.tokens[i - 1]);
           const b = h(
             'button',
             {

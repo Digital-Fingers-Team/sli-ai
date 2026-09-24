@@ -1,12 +1,24 @@
-// Camera stage + skeleton overlay + live guess. Emits committed signs.
+// Camera stage + skeleton overlay + live guess, feeding a Sentence. Two modes: words (the
+// sequence model) and letters (the per-frame hand-shape model, for live fingerspelling).
 
-import { Engine, type EngineStatus } from '../recognition/engine';
+import { Engine, type EngineStatus, type SignMode } from '../recognition/engine';
 import type { Commit } from '../recognition/decoder';
 import type { Guess } from '../recognition/topk';
 import { signById } from '../data/signs';
 import { t } from '../i18n';
 import { drawOverlay } from './overlay';
 import { h, icon } from './dom';
+import type { Sentence } from './sentence';
+
+const MODES: SignMode[] = ['words', 'letters'];
+
+function storedMode(): SignMode {
+  try {
+    return localStorage.getItem('sli-mode') === 'letters' ? 'letters' : 'words';
+  } catch {
+    return 'words';
+  }
+}
 
 export class Capture {
   readonly el: HTMLElement;
@@ -20,9 +32,19 @@ export class Capture {
   private running = false;
   private handSeen = false;
   private fpsEl = h('span', { class: 'fps' });
+  private mode: SignMode = storedMode();
+  private modeButtons: HTMLButtonElement[];
+  private hint = h('p', { class: 'mode-hint' });
+  private lastCommitted = -1; // not previewed again while it is still being held
 
-  constructor(private onCommit: (c: Commit) => void) {
+  constructor(
+    private sentence: Sentence,
+    private onCommit: (c: Commit) => void = () => {},
+  ) {
     this.toggleBtn = h('button', { class: 'btn primary', onclick: () => this.toggle() });
+    this.modeButtons = MODES.map((m) =>
+      h('button', { type: 'button', 'data-mode': m, onclick: () => this.setMode(m) }, t().modes[m]),
+    );
     this.stage = h(
       'div',
       { class: 'stage camera-stage idle' },
@@ -31,7 +53,14 @@ export class Capture {
       this.live,
       h('div', { class: 'stage-bar' }, this.status, this.fpsEl),
     );
-    this.el = h('div', { class: 'capture' }, this.stage, h('div', { class: 'capture-actions' }, this.toggleBtn));
+    this.el = h(
+      'div',
+      { class: 'capture' },
+      h('div', { class: 'mode-switch', role: 'group', 'aria-label': t().modeLabel }, ...this.modeButtons),
+      this.stage,
+      this.hint,
+      h('div', { class: 'capture-actions' }, this.toggleBtn),
+    );
     this.engine = new Engine(this.video, {
       onStatus: (s, d) => this.setStatus(s, d),
       onFrame: (raw, fps) => {
@@ -46,18 +75,47 @@ export class Capture {
       },
       onLive: (g) => this.showLive(g),
       onCommit: (c) => {
+        this.lastCommitted = c.id;
         this.flash(c);
+        this.sentence.add(c);
         this.onCommit(c);
       },
-      onSegmentEnd: () => (this.live.textContent = ''),
+      onSegmentEnd: () => {
+        this.lastCommitted = -1;
+        this.live.textContent = '';
+        this.sentence.setPending(null);
+        this.sentence.endWord();
+      },
     });
+    this.setMode(this.mode);
     this.renderButton();
     this.status.textContent = t().cameraOff;
   }
 
+  private setMode(mode: SignMode) {
+    this.mode = mode;
+    try {
+      localStorage.setItem('sli-mode', mode);
+    } catch {
+      /* ignore */
+    }
+    this.modeButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+    this.hint.textContent = t().modeHints[mode];
+    this.engine.setMode(mode);
+    this.sentence.setPending(null);
+    this.sentence.endWord();
+    this.lastCommitted = -1;
+    this.live.textContent = '';
+  }
+
   private showLive(guesses: Guess[]) {
     const top = guesses[0];
-    this.live.textContent = top.p > 0.25 ? `${t().maybe}: ${signById(top.id).ar}` : '';
+    // Words show once the model leans one way; letters are only offered when fairly sure.
+    const shown = top.id !== this.lastCommitted && top.p >= (this.mode === 'letters' ? 0.45 : 0.3);
+    if (!shown && this.live.classList.contains('committed')) return;
+    this.sentence.setPending(shown ? top.id : null);
+    this.live.textContent = shown ? signById(top.id).ar : '';
+    this.live.classList.remove('committed');
   }
 
   private flash(c: Commit) {

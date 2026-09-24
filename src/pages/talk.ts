@@ -33,7 +33,7 @@ export function mountTalk(root: HTMLElement) {
     void speak(text);
     sentence.clear();
   });
-  const capture = new Capture((c) => sentence.add(c));
+  const capture = new Capture(sentence);
   hearing = textToSign('', (text) => add('hearing', text));
 
   root.replaceChildren(

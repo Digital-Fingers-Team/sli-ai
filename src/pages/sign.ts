@@ -18,8 +18,7 @@ export function mountSign(root: HTMLElement) {
   const sentence = new Sentence((text) => {
     speakBtn.disabled = !text;
   });
-  const capture = new Capture((c) => {
-    sentence.add(c);
+  const capture = new Capture(sentence, (c) => {
     const s = signById(c.id);
     if (autoSpeak && s.cat !== 'letters') void speak(s.ar);
   });

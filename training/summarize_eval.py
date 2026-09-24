@@ -29,14 +29,16 @@ for r in results:
     else:
         misses[r["sign"]].append(r["top5"][0])
 
-metrics = {
+path = os.path.join(HERE, "..", "src", "data", "metrics.json")
+metrics = json.load(open(path)) if os.path.exists(path) else {}  # keeps the letter model's entry
+metrics.update({
     "videos": n,
     "signers": len(sys.argv) - 1,
     "top1": round(top1, 4),
     "top5": round(top5, 4),
     "byCategory": {c: round(ok / tot, 4) for c, (ok, tot) in sorted(by_cat.items())},
-}
-json.dump(metrics, open(os.path.join(HERE, "..", "src", "data", "metrics.json"), "w"), indent=1)
+})
+json.dump(metrics, open(path, "w"), indent=1)
 
 print(f"**{n} test videos, {metrics['signers']} signers: top-1 {top1:.1%}, top-5 {top5:.1%}**\n")
 print("| Category | Top-1 |\n| --- | --- |")

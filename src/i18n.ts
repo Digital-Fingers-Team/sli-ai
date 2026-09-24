@@ -13,7 +13,13 @@ const ar = {
 
   // sign -> text
   signTitle: 'أشِر أمام الكاميرا',
-  signHint: 'أدِّ الإشارة ثم أنزل يديك قليلًا قبل الإشارة التالية. للتهجئة، اثبت على كل حرف لحظة.',
+  signHint: 'اختر «كلمات» أو «حروف» ثم أشِر أمام الكاميرا؛ تظهر الترجمة وأنت تشير.',
+  modeLabel: 'نوع الإشارة',
+  modes: { words: 'كلمات', letters: 'حروف' } as Record<string, string>,
+  modeHints: {
+    words: 'أشِر بالكلمة؛ تظهر باهتة وأنت تشير ثم تُثبَّت حين يتأكد منها التطبيق.',
+    letters: 'تهجَّ حرفًا حرفًا: اثبت على كل حرف لحظة ثم انتقل للتالي دون إنزال يدك. أنزل يدك لإنهاء الكلمة.',
+  } as Record<string, string>,
   startCamera: 'تشغيل الكاميرا',
   stopCamera: 'إيقاف الكاميرا',
   loadingModels: 'جارٍ تحميل النماذج…',
@@ -94,7 +100,13 @@ const en: Dict = {
   themeToggle: 'Toggle theme',
 
   signTitle: 'Sign in front of the camera',
-  signHint: 'Sign, then lower your hands briefly before the next sign. To fingerspell, hold each letter for a moment.',
+  signHint: 'Pick Words or Letters, then sign to the camera; the translation appears as you sign.',
+  modeLabel: 'What are you signing?',
+  modes: { words: 'Words', letters: 'Letters' },
+  modeHints: {
+    words: 'Sign a word: it appears faintly while you sign and is confirmed once the app is sure.',
+    letters: 'Spell letter by letter: hold each letter a moment, then move to the next without lowering your hand. Lower your hand to end the word.',
+  },
   startCamera: 'Start camera',
   stopCamera: 'Stop camera',
   loadingModels: 'Loading models…',

@@ -11,6 +11,10 @@ import { Decoder, DEFAULT_OPTIONS } from '../../src/recognition/decoder';
 const CACHE = new URL('../../training/cache/', import.meta.url).pathname;
 const TRIALS = Number(process.env.SLI_REPLAY_TRIALS ?? 40);
 const WORDS = 3;
+// SLI_CONTINUOUS=1: signs follow each other without lowering the hands (each clip's hand-less
+// start and end are cut). SLI_BODY_EVERY=N: pose and face refreshed every N-th frame, as the app does.
+const CONTINUOUS = !!process.env.SLI_CONTINUOUS;
+const BODY_EVERY = Number(process.env.SLI_BODY_EVERY ?? 2);
 
 // Deterministic pseudo-random so runs are comparable while tuning.
 let seed = 7;
@@ -23,35 +27,71 @@ function handsDown(raw: RawFrame): RawFrame {
   return { ...raw, hands: [] };
 }
 
+function trimHandless(v: RawFrame[]): RawFrame[] {
+  const first = v.findIndex((r) => r.hands.length);
+  let last = v.length - 1;
+  while (last > 0 && !v[last].hands.length) last--;
+  return first < 0 ? v : v.slice(first, last + 1);
+}
+
 async function trial(session: ort.InferenceSession, fps: number) {
   const picks = Array.from({ length: WORDS }, () => files[Math.floor(rand() * files.length)]);
   const videos = picks.map((f) => JSON.parse(readFileSync(CACHE + f, 'utf8')) as RawFrame[]);
   const rest = handsDown(videos[0].find((r) => r.pose) ?? videos[0][0]);
   const stream: RawFrame[] = [];
+  const ends: number[] = []; // frame index where each sign ends
   const gap = () => stream.push(...Array.from({ length: 30 }, () => rest));
   gap();
   for (const v of videos) {
-    stream.push(...v);
-    gap();
+    stream.push(...(CONTINUOUS ? trimHandless(v) : v));
+    ends.push(stream.length);
+    if (!CONTINUOUS) gap();
   }
+  if (CONTINUOUS) gap();
   const commits: number[] = [];
+  const commitAt: number[] = [];
   const decoder = new Decoder(
     async (seq) => {
       const out = await session.run({ input: new ort.Tensor('float32', seq, [1, SEQ_LEN, FRAME_SIZE]) });
       return softmaxTopK(out.output.data as Float32Array, 5);
     },
-    { onCommit: (c) => commits.push(c.id) },
+    {
+      onCommit: (c) => {
+        commits.push(c.id);
+        commitAt.push(c.at);
+        if (process.env.SLI_TRACE) console.log('COMMIT', Math.round(c.at), c.id, c.p.toFixed(2));
+      },
+      onLive: (g, at) => {
+        if (process.env.SLI_TRACE) console.log('live', Math.round(at), g.slice(0, 3).map((x) => `${x.id}:${x.p.toFixed(2)}`).join(' '));
+      },
+    },
     { ...DEFAULT_OPTIONS, ...JSON.parse(process.env.SLI_OPTS ?? '{}') },
   );
   // Source is 30 fps; a device at `fps` sees every (30/fps)-th frame.
   let last = -1;
+  let seen = 0;
+  let body: Pick<RawFrame, 'pose' | 'face'> = stream[0];
   for (let i = 0; i < stream.length; i++) {
     const tick = Math.floor((i * fps) / 30);
     if (tick === last) continue;
     last = tick;
-    await decoder.push((i * 1000) / 30, frameFeatures(stream[i]), stream[i].hands.length > 0);
+    if (seen++ % BODY_EVERY === 0) body = stream[i];
+    const raw = { ...stream[i], pose: body.pose, face: body.face };
+    await decoder.push((i * 1000) / 30, frameFeatures(raw), raw.hands.length > 0);
   }
-  return { truth: picks.map(signOf), commits };
+  if (process.env.SLI_TRACE) console.log('TRUTH', picks.map(signOf).join(','), 'ends(ms)', ends.map((e) => Math.round((e * 1000) / 30)).join(','));
+  // Latency: how long after a sign's last frame its word appeared (right words only).
+  const truth = picks.map(signOf);
+  const delays = truth.flatMap((id, k) => (commits[k] === id ? [commitAt[k] - (ends[k] * 1000) / 30] : []));
+  return { truth, commits, delays };
+}
+
+/** Longest common subsequence: words recognised in the right order, even if one was missed or added. */
+function lcs(a: number[], b: number[]): number {
+  const dp = Array.from({ length: a.length + 1 }, () => new Array<number>(b.length + 1).fill(0));
+  for (let i = 1; i <= a.length; i++)
+    for (let j = 1; j <= b.length; j++) dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
+  return dp[a.length][b.length];
 }
 
 describe.runIf(process.env.SLI_REPLAY)('sentence replay', () => {
@@ -61,14 +101,25 @@ describe.runIf(process.env.SLI_REPLAY)('sentence replay', () => {
       let exact = 0;
       let wordsRight = 0;
       let extra = 0;
+      const delays: number[] = [];
       for (let k = 0; k < TRIALS; k++) {
-        const { truth, commits } = await trial(session, fps);
+        const { truth, commits, delays: d } = await trial(session, fps);
+        delays.push(...d);
         if (commits.join() === truth.join()) exact++;
-        wordsRight += truth.filter((id, i) => commits[i] === id).length;
+        wordsRight += lcs(truth, commits);
         extra += Math.max(0, commits.length - truth.length);
         if (process.env.SLI_REPLAY_VERBOSE && commits.join() !== truth.join()) console.log(fps, 'truth', truth, 'got', commits);
       }
-      const summary = { fps, sentences: TRIALS, exact: exact / TRIALS, words: wordsRight / (TRIALS * WORDS), extraPerSentence: extra / TRIALS };
+      delays.sort((a, b) => a - b);
+      const summary = {
+        fps,
+        continuous: CONTINUOUS,
+        sentences: TRIALS,
+        exact: exact / TRIALS,
+        words: wordsRight / (TRIALS * WORDS),
+        extraPerSentence: extra / TRIALS,
+        medianDelayMs: Math.round(delays[Math.floor(delays.length / 2)] ?? NaN),
+      };
       console.log(JSON.stringify(summary));
       expect(summary.words).toBeGreaterThan(0.85);
     }, 600_000);

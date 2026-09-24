@@ -767,3 +767,45 @@ main {
     transition: none !important;
   }
 }
+
+/* ---------- sign mode switch + live preview ---------- */
+.mode-switch {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  margin-bottom: 0.6rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+.mode-switch button {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 600;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.mode-switch button[aria-pressed='true'] {
+  background: var(--brand);
+  color: var(--brand-ink, #fff);
+}
+.mode-hint {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0.6rem 0 0;
+}
+.word.pending {
+  opacity: 0.4;
+  cursor: default;
+  animation: breathe 1.2s ease-in-out infinite;
+}
+.word.pending:hover {
+  background: none;
+}
+@keyframes breathe {
+  50% {
+    opacity: 0.25;
+  }
+}

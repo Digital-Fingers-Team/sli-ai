@@ -22,7 +22,8 @@ test('sign → text: recognises the signs from the camera', async ({ page }) => 
   await page.getByRole('button', { name: 'تشغيل الكاميرا' }).click();
   await expect(page.getByRole('button', { name: 'إيقاف الكاميرا' })).toBeVisible({ timeout: 120_000 });
 
-  const words = page.locator('.sentence-words .word');
+  // The faint live preview (.pending) is not a recognised word yet.
+  const words = page.locator('.sentence-words .word:not(.pending)');
   await expect(words).toHaveCount(expected.length, { timeout: 180_000 });
   const got = await words.allTextContents();
   const alts = await words.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.alts?.split('|') ?? []));

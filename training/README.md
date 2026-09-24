@@ -16,6 +16,9 @@ data, and builds the assets the app ships.
 | `export_parity.py` | Fixture proving the TypeScript features match Python (`tests/unit/features.test.ts`). |
 | `make_clips.py` | The signer videos in `public/clips/` (signer 02, KArSL test split, H.264 256×256). |
 | `make_fake_camera.py` | A `.y4m` camera for the Playwright tests. |
+| `eval_video_mode.py` | Which MediaPipe speed-ups (tracking per part, pose/face every other frame) keep the word model's accuracy. |
+| `extract_letters.py` | Hand landmarks of every KArSL letter video, for the letter model. |
+| `train_letters.py` | Trains the per-frame letter model (`public/models/letters.json`), reports leave-one-signer-out accuracy, writes the parity fixture. |
 
 Setup: Python 3.9+, `pip install mediapipe==0.10.14 onnxruntime opencv-python-headless numpy py7zr`.
 KArSL is on the dataset authors' Google Drive (linked from https://hamzah-luqman.github.io/KArSL/);
@@ -46,30 +49,76 @@ Signs missed by more than one signer: قطارة, يصبغ (→ صباغ), مس�
 KArSL splits train/test by repetition, not by person, so all three signers were seen in training.
 Expect lower accuracy for new people.
 
+## Landmark speed-ups
+
+MediaPipe's tracking (VIDEO) mode skips detection on most frames, but the model was trained on
+landmarks detected frame by frame. `eval_video_mode.py` on 126 held-out videos (signer 02,
+every 4th sign, 15 fps):
+
+| Landmarks | Top-1 |
+| --- | --- |
+| All detected per frame (as in training) | 98.4% |
+| Pose and face refreshed every other frame | 98.4% |
+| Pose and face tracked | 99.2% |
+| Hands tracked | 87.3% |
+| Everything tracked | 89.7% |
+
+So the app detects hands on every frame and tracks pose and face. On devices below 18 fps
+pose and face are refreshed only every other frame (in sentences that costs 2-3 points, see below).
+
 ## Sentences through the app's pipeline
 
 `tests/replay` feeds cached landmarks through the same TypeScript features, decoder and model
-the browser uses: 40 sentences of 3 random signs with hands-down pauses, subsampled to a camera
-frame rate. Run with `SLI_REPLAY=1 npx vitest run` (`SLI_FPS`, `SLI_OPTS` to experiment).
+the browser uses: 3 random signs per sentence, subsampled to a camera frame rate, either with
+the hands lowered between signs or signed straight through (each clip's hand-less start and
+end cut, `SLI_CONTINUOUS=1`). Words are counted in order (longest common subsequence), so one
+missed word does not mark the rest wrong. Run with `SLI_REPLAY=1 npx vitest run` (`SLI_FPS`,
+`SLI_OPTS`, `SLI_BODY_EVERY`, `SLI_REPLAY_TRIALS` to experiment).
 
-| Camera fps | Words right | Sentences exactly right | Extra words per sentence |
+80 sentences each, pose and face every frame:
+
+| Camera fps | Words right, pause between signs | Words right, no pause | Word shown after the sign ends (median) |
 | --- | --- | --- | --- |
-| 5 | 62% | 37% | 0 |
-| 10 | 89% | 78% | 0 |
-| 15 | 95% | 88% | 0.03 |
-| 30 | 93% | 88% | 0.05 |
+| 10 | 91% | 60% | 0.35 s |
+| 15 | 93% | 54% | 0.27 s |
+| 30 | 94% | 54% | 0.30 s |
 
-What moved these numbers while tuning the decoder (`src/recognition/decoder.ts`):
+Pose and face every other frame, 15 fps: 90% / 53%.
 
-- Keeping frames where the hand is momentarily lost inside a sign: the training clips have them,
-  and classifying only hand frames turned correct answers wrong.
-- No lead-in before the hand appears (400 ms of lead-in cut word accuracy from ~95% to ~70%).
-- Committing mid-sign only when the same answer holds at ≥ 0.9 for 4 checks (~1 s); looser early
-  commits added wrong words.
-- After an early commit, the rest of the segment counts as a new sign only if it lasts ≥ 700 ms
-  at ≥ 0.8.
+The decoder (`src/recognition/decoder.ts`) got there by:
 
-Frame rate matters most: below ~10 fps there are too few frames per sign.
+- Classifying the growing window since the current sign began: its confidence peaks where the
+  sign ends and drops once the next sign starts, so the peak is committed after two checks
+  confirm the drop and the next sign starts from the peak. Against the earlier rule (commit
+  only when the hands drop or one answer stays at 0.9 for a second): 36% → 54% with no pause,
+  94% → 93% with pauses, 15 fps.
+- Rules that commit whenever the short-window answer changes were tried and dropped: partway
+  through a sign the model is often confidently wrong, and they fell to 62-75% with pauses.
+- Hands down for 300 ms ends a sign (450 ms before: same accuracy, words showed 130 ms later).
+- Keeping frames where the hand is momentarily lost inside a sign, and no lead-in before the
+  hand appears (400 ms of lead-in cut word accuracy from ~95% to ~70%).
+
+Signing without pauses stays much harder: the model only ever saw single signs that start and
+end with the hands down. A continuous-signing model would need sentence-level training data.
+
+## Letters
+
+KArSL has 39 letter signs, 8 videos per signer each. `train_letters.py` trains a small MLP on
+one hand's 21 points per frame (relative to the wrist, scaled by palm size, one handedness label
+mirrored, plus fingertip distances), from the middle of each video's hand frames, with rotation,
+stretch and jitter augmentation. Accuracy is leave-one-signer-out, i.e. on a person the model
+never saw:
+
+| Held-out signer | Frames | Videos (averaged over the held letter) |
+| --- | --- | --- |
+| 01 | 78.6% | 81.1% |
+| 02 | 69.4% | 71.2% |
+| 03 | 74.0% | 77.3% |
+| **Mean** | **74.0%** | **76.5%** |
+
+Variants tried (videos): without mirroring 74.9%, without fingertip distances 73.4%, without either 72.1%. Most errors are
+letters that share a hand shape and differ by movement or a hamza: ي/ى/ئ, ن/ئـ, أ/ئـ, ت/ة,
+ا/آ, ج/ح, ز/ذ, ر/د. The shipped model is trained on all three signers.
 
 ## Browser parity
 
