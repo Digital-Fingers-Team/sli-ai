@@ -19,6 +19,7 @@ data, and builds the assets the app ships.
 | `eval_video_mode.py` | Which MediaPipe speed-ups (tracking per part, pose/face every other frame) keep the word model's accuracy. |
 | `extract_letters.py` | Hand landmarks of every KArSL letter video, for the letter model. |
 | `eval_location.py` | How much the word model relies on where the hands are relative to the body. |
+| `eval_framing.py` | How the word model holds up when the signer is framed like on a phone (cropped, closer). |
 | `extract_letters_pose.py` | Nose and shoulders for every letter video, for the letter model's location input. |
 | `eval_two_hands.py` | Whether to track one hand or two, and how to feed them to the word model. |
 | `train_letters.py` | Trains the per-frame letter model (`public/models/letters.json`), reports leave-one-signer-out accuracy, writes the parity fixture. |
@@ -89,6 +90,26 @@ points from `extract_letters_pose.py`) gave 76.7% vs 75.9% at 40 epochs but 76.1
 60, i.e. within run-to-run noise. It would also need body tracking in Letters mode, which
 skips it to stay fast, so the shipped letter model reads the hand shape only. Its remaining
 confusions (ي/ى/ئ, ج/ح) differ by movement, which a one-frame model cannot see.
+
+## Framing
+
+KArSL is filmed with the whole upper body in view: shoulders take 0.32 of the frame width. On a
+phone the camera is usually upright and closer. `eval_framing.py` crops the test videos (width x
+height kept, anchored at the top) and runs the word model on 48 held-out videos per framing:
+as recorded 1x1, upright phone 0.75x1, upright closer 0.6x0.8, very close 0.5x0.67. The last
+column is أهلا وسهلا (sign folder 289).
+
+| Framing | Top-1 | Videos | Median shoulder share | Frames with a wrist outside | أهلا وسهلا |
+| --- | --- | --- | --- | --- | --- |
+| As recorded | 100.0% | 48 | 0.32 | 32% | 3/3 |
+| Upright phone | 91.7% | 48 | 0.42 | 33% | 3/3 |
+| Upright, closer | 64.6% | 48 | 0.53 | 74% | 1/3 |
+| Upright, very close | 41.7% | 48 | 0.64 | 87% | 1/3 |
+
+Once the shoulders fill about half the width, hands leave the picture and accuracy drops. The
+app's framing coach (`src/recognition/framing.ts`) warns when the shoulders take more than 0.48
+of the width or when a raised hand stays clearly outside. At KArSL framing it triggers on only 3
+of 1,506 test videos (`tests/replay/framing.test.ts`).
 
 ## Two hands
 
