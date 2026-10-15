@@ -71,4 +71,4 @@ def test_limits(server):
 
 def test_health(server):
     with urllib.request.urlopen(server + "/api/sentence/health") as r:
-        assert json.loads(r.read()) == {"ok": True, "model": "large-v2", "name": "SLI Sentences Large v2"}
+        assert json.loads(r.read()) == {"ok": True, "model": "large-us", "name": "SLI Sentences Large US"}

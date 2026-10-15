@@ -15,7 +15,7 @@ import onnxruntime as ort
 DIM, MIN_T, MAX_T = 356, 8, 450
 QUEUE_WAIT_S = 4
 DRAIN_MAX = 2 << 20
-MODEL_ID, MODEL_NAME = "large-v2", "SLI Sentences Large v2"  # Isharah round 9: 17.5% WER on an unseen signer
+MODEL_ID, MODEL_NAME = "large-us", "SLI Sentences Large US"  # community model (HF bibo18, 2026-10-09): 11.3% US-dev WER vs 13.5% for Large v2
 
 
 def greedy(lp):

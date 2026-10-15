@@ -58,3 +58,18 @@ almost always has a face. Cost of losing the face entirely (dev WER, exported ON
 | large r9 | 0.1745 | 0.1917 |
 
 1-2 points: no special retraining. The e2e camera uses phone-like framing.
+
+## Community model: Large US (HF bibo18, 2026-10-09) — served since 2026-10-15
+
+`isharah-large-US.onnx` from DF-Team/sli-sentences, same I/O as Large v2. It was fine-tuned on the
+Isharah **US** train split, which holds 900 of the 1000 SI-dev videos, so its SI-dev score is not
+an honest unseen-signer number. `eval_clean.py` scores only the 100 SI-dev videos outside US train.
+
+| Model | SI dev (leaky for US) | US dev | Clean SI dev (n=100) |
+| --- | --- | --- | --- |
+| Large v2 (r9) | 0.1745 | 0.1349 | 0.4168 |
+| Large US | 0.1327 | 0.1131 | 0.4082 |
+
+Better on unseen sentences, a tie on the clean set. Rollback: copy
+`~/sli-work/models/sentences-large-r9.onnx` over `sentences-large.onnx`, restore MODEL_ID/NAME in
+app.py, run `server/sentence-api/run.sh`.
